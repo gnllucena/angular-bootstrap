@@ -3,10 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { IndexPageComponent } from './index-page/index-page.component';
 
-import { AuthenticationGuardComponent } from '../../shared/authentication-guard.component';
-
 const appRoutes: Routes = [
-  { path: '', component: IndexPageComponent, canActivate: [AuthenticationGuardComponent] },
+  { path: '', component: IndexPageComponent },
 ];
 
 @NgModule({ 

@@ -1,13 +1,13 @@
 import { Component, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 
 @Component({
-    selector: 'dashboard-page',
-    templateUrl: './dashboard-page.component.html',
+    selector: 'user-index-page',
+    templateUrl: './user-index-page.component.html',
     encapsulation: ViewEncapsulation.None
 })
 
-export class DashboardPageComponent {
-    title = 'Dashboard';
+export class UserIndexPageComponent {
+    title = 'Index';
 
     constructor(private viewContainerRef: ViewContainerRef) { }
 }

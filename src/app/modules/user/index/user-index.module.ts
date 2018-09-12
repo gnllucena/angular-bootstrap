@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
+import { UserIndexPageComponent } from './index-page/user-index-page.component';
 
 import { AuthenticationGuardComponent } from '../../shared/authentication-guard.component';
 
 const appRoutes: Routes = [
-  { path: '', component: DashboardPageComponent, canActivate: [AuthenticationGuardComponent] },
+  { path: '', component: UserIndexPageComponent, canActivate: [AuthenticationGuardComponent] },
 ];
 
 @NgModule({ 
   declarations: [
-    DashboardPageComponent,
+    UserIndexPageComponent,
   ],
   imports: [
     RouterModule.forChild(appRoutes)
   ]
 })
-export class DashboardModule { }
+export class UserIndexModule { }

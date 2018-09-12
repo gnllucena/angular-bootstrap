@@ -9,12 +9,16 @@ import { UserInterfaceModule } from './modules/user-interface/user-interface.mod
 
 export const appRoutes: Routes = [
   {
-    path: 'user',
-    loadChildren: './modules/home/home.module#HomeModule'
+    path: '',
+    loadChildren: './modules/index/index.module#IndexModule'
   },
   {
     path: 'login',
-    loadChildren: './modules/authentication/authentication.module#AuthenticationModule'
+    loadChildren: './modules/login/login.module#LoginModule'
+  },
+  {
+    path: 'user',
+    loadChildren: './modules/user/user.module#UserModule'
   },
   { path: '**', redirectTo: '' }
 ];
