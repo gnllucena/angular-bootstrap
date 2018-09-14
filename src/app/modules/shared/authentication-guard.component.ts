@@ -3,19 +3,26 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 
 @Injectable()
 export class AuthenticationGuardComponent implements CanActivate {
-    constructor(private router: Router) { }
+  constructor(private router: Router) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        let user = JSON.parse(sessionStorage.getItem('user'));
-        
-        if (user && user.token) {
-            if (user.timeout - Date.now() > 0) {
-                return true;
-            }
-        }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    
+    if (user && user.token && user.timeout) {
+      let timeout = new Date(user.timeout);
+      let now = new Date(Date.now());
 
-        location.href = '/login';
-
-        return false;
+      if (timeout > now) {
+        return true;
+      }
     }
+
+    this.router.navigate(['/login'], {
+      queryParams: {
+        returnUrl: state.url
+      }
+    });
+
+    return false;
+  }
 }
