@@ -50,10 +50,11 @@ export class LoginPageComponent {
     
     var user = this.form.getRawValue() as User;
 
-    this.authenticationService.login(user);
+    this.authenticationService.login(user)
+      .subscribe(() => {
+        let returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/user';
 
-    let returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/user';
-
-    this.router.navigateByUrl(returnUrl);
+        this.router.navigateByUrl(returnUrl);
+      });
   }
 }
