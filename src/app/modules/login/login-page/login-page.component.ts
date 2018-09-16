@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../../domain/user';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from '../../../services/authentication.service';
 
 @Component({
   selector: 'login-page',
@@ -20,12 +21,14 @@ export class LoginPageComponent {
   constructor(
     private formBuilder: FormBuilder, 
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     if (!this.user) {
       this.user = new User();
-    }  
+    }
+
     this.form = this.formBuilder.group({
       Email: this.formBuilder.control({
         value: this.user.Email || null,
@@ -47,16 +50,7 @@ export class LoginPageComponent {
     
     var user = this.form.getRawValue() as User;
 
-    var data = new Date();
-    data.setDate(data.getDate() + 1);
-
-    let bearer = {
-      token: "token",
-      timeout: data,
-      email: user.Email,
-    }
-
-    sessionStorage.setItem('user', JSON.stringify(bearer));
+    this.authenticationService.login(user);
 
     let returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/user';
 

@@ -2,8 +2,8 @@
   <a class="navbar-brand" href="/">Angular 6 bootstrap</a>
   <div class="navbar-expand mr-auto">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" href="/user">My page</a>
-      <a class="nav-item nav-link" href="/user/dashboard">My dashboard</a>
+      <a class="nav-item nav-link" routerLink="/user" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">My page</a>
+      <a class="nav-item nav-link" routerLink="/user/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">My dashboard</a>
       <a class="nav-item nav-link" (click)="logout()" href="javascript:void(0)">Logout</a>
     </div>
   </div>
