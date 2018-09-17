@@ -1,12 +1,12 @@
 import { Component, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'user-index-page',
-  templateUrl: './user-index-page.component.html',
+  selector: 'users-index-page',
+  templateUrl: './users-index-page.component.html',
   encapsulation: ViewEncapsulation.None
 })
 
-export class UserIndexPageComponent {
+export class UsersIndexPageComponent {
   title = 'Index';
 
   constructor() { }

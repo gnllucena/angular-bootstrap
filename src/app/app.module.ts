@@ -9,6 +9,7 @@ import { SharedModule } from './modules/shared/shared.module';
 import { UserInterfaceModule } from './modules/user-interface/user-interface.module';
 
 import { AuthenticationService } from './services/authentication.service';
+import { LoadingService } from './services/loading.service';
 
 export const appRoutes: Routes = [
   {
@@ -20,8 +21,8 @@ export const appRoutes: Routes = [
     loadChildren: './modules/login/login.module#LoginModule'
   },
   {
-    path: 'user',
-    loadChildren: './modules/user/user.module#UserModule'
+    path: 'users',
+    loadChildren: './modules/users/users.module#UsersModule'
   },
   { path: '**', redirectTo: '' }
 ];
@@ -38,7 +39,8 @@ export const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)    
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    LoadingService
   ],
   bootstrap: [AppComponent]
 })

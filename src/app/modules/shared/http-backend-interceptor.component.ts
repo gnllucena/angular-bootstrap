@@ -21,6 +21,7 @@ export class HttpBackendInterceptorComponent implements HttpInterceptor {
           let jwt: Jwt = {
             Token: "eaea23424asdfaefwr52asdfasdf32s",
             Timeout: data,
+            User: "gnllucena",
             Name: "Gabriel Lucena",
             Email: "gnllucena@gmail.com"
           };

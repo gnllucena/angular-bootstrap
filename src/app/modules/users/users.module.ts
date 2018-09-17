@@ -4,11 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 export const appRoutes: Routes = [
   {
     path: '',
-    loadChildren: './index/user-index.module#UserIndexModule'
+    loadChildren: './index/users-index.module#UsersIndexModule'
   },
   {
     path: 'dashboard',
-    loadChildren: './dashboard/user-dashboard.module#UserDashboardModule'
+    loadChildren: './dashboard/users-dashboard.module#UsersDashboardModule'
   }
 ];
 
@@ -17,4 +17,4 @@ export const appRoutes: Routes = [
     RouterModule.forChild(appRoutes)
   ]
 })
-export class UserModule { }
+export class UsersModule { }
