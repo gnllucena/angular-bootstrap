@@ -24,7 +24,11 @@ export const appRoutes: Routes = [
     path: 'users',
     loadChildren: './modules/users/users.module#UsersModule'
   },
-  { path: '**', redirectTo: '' }
+  {
+    path: 'not-found',
+    loadChildren: './modules/not-found/not-found.module#NotFoundModule'
+  },
+  { path: '**', redirectTo: 'not-found' }
 ];
 
 @NgModule({
