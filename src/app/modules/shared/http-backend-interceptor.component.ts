@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
-import { Jwt } from '../../domain/jwt';
+import { Jwt } from '../../domain/Jwt';
+import { User } from '../../domain/User';
 
 @Injectable()
 export class HttpBackendInterceptorComponent implements HttpInterceptor {
@@ -17,13 +18,13 @@ export class HttpBackendInterceptorComponent implements HttpInterceptor {
         if (req.url.endsWith('/login') && req.method === 'POST') {
           var data = new Date();
           data.setDate(data.getDate() + 1);
-    
+          
           let jwt: Jwt = {
             Token: "eaea23424asdfaefwr52asdfasdf32s",
             Timeout: data,
-            User: "gnllucena",
-            Name: "Gabriel Lucena",
-            Email: "gnllucena@gmail.com"
+            Username: req.body.Email.split("@")[0],
+            Name: req.body.Email.split("@")[0],
+            Email: req.body.Email
           };
     
           return of(new HttpResponse({ status: 200, body: jwt }));

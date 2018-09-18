@@ -13,15 +13,14 @@ export class HttpLoaderInterceptorComponent implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     this.requests++;
     
-    this.loadingService.loading = true;
+    this.loadingService.loading.next(true);
 
     return next.handle(request)
       .pipe(tap(res => {
         if (res instanceof HttpResponse) {
           this.finishing();
         }
-      }),
-      catchError(err => {
+      }), catchError(err => {
         this.finishing();
 
         throw err;
@@ -33,7 +32,7 @@ export class HttpLoaderInterceptorComponent implements HttpInterceptor {
     this.requests--;
 
     if (this.requests === 0) {
-      this.loadingService.loading = false;
+      this.loadingService.loading.next(false);
     }
   }
 }

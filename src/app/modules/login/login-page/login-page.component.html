@@ -12,22 +12,22 @@
         <div class="form-group">
           <label class="form-control-label">Email address</label>
             <div class="input-group input-group-transparent">
-              <input formControlName="Email" type="email" class="form-control" id="input-email" placeholder="name@example.com" autocomplete="off">
+              <input formControlName="Email" autofocus type="email" class="form-control" id="input-email" placeholder="name@example.com" autocomplete="off">
             </div>
-            <div *ngIf="submitted && form.controls.Email.errors">
+            <ng-container *ngIf="submitted && form.controls.Email.errors">
               <small *ngIf="form.controls.Email.errors.required">Email is required</small>
               <small *ngIf="form.controls.Email.errors.email">Email must be a valid email address</small>
-            </div>
+            </ng-container>
         </div>
         <div class="form-group mb-4">
           <label class="form-control-label">Password</label>
           <div class="input-group input-group-transparent">
             <input formControlName="Password" type="password" class="form-control" id="input-password" placeholder="Password" autocomplete="off">
           </div>
-          <div *ngIf="submitted && form.controls.Password.errors">
+          <ng-container *ngIf="submitted && form.controls.Password.errors">
             <small *ngIf="form.controls.Password.errors.required">Password is required</small>
             <small *ngIf="form.controls.Password.errors.minlength">Password must be at least 6 characters</small>
-          </div>
+          </ng-container>
         </div>
         <div class="text-center mb-3">
           <button type="submit" class="btn btn-block btn-primary">Sign in</button>

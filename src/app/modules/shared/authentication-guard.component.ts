@@ -5,11 +5,12 @@ import { AuthenticationService } from '../../services/authentication.service';
 @Injectable()
 export class AuthenticationGuardComponent implements CanActivate {
   
-  constructor(private router: Router, 
-              private authenticationService: AuthenticationService) { }
+  constructor(
+    private router: Router, 
+    private authenticationService: AuthenticationService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    let jwt = this.authenticationService.jwt();
+    let jwt = this.authenticationService.jwt.value;
     
     if (jwt && jwt.Token && jwt.Timeout) {
       let timeout = new Date(jwt.Timeout);

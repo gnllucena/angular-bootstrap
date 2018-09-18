@@ -1,6 +1,6 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../../../domain/user';
+import { User } from '../../../domain/User';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../../services/authentication.service';
 
@@ -10,13 +10,11 @@ import { AuthenticationService } from '../../../services/authentication.service'
   encapsulation: ViewEncapsulation.None
 })
 
-export class LoginPageComponent {
+export class LoginPageComponent implements OnInit {
   title = 'Login';
 
   public form: FormGroup;
   public submitted = false;
-
-  @Input() user: User;
 
   constructor(
     private formBuilder: FormBuilder, 
@@ -25,17 +23,18 @@ export class LoginPageComponent {
     private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    if (!this.user) {
-      this.user = new User();
-    }
+    let user = new User();
+
+    user.Email = "gnllucena@gmail.com";
+    user.Password = "asdfas";
 
     this.form = this.formBuilder.group({
       Email: this.formBuilder.control({
-        value: this.user.Email || null,
-        disabled: false
+        value: user.Email || null,
+        disabled: false,
       }, [Validators.required, Validators.email]),
       Password: this.formBuilder.control({
-        value: this.user.Password || null,
+        value: user.Password || null,
         disabled: false
       }, [Validators.required, Validators.minLength(6)]),
     });

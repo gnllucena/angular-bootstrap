@@ -1,7 +1,7 @@
 export class Jwt {
   Token: String;
   Timeout: Date;
-  User: String;
+  Username: String;
   Name: String;
   Email: String;
 }

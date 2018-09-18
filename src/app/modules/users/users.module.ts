@@ -7,10 +7,20 @@ export const appRoutes: Routes = [
     loadChildren: './index/users-index.module#UsersIndexModule'
   },
   {
-    path: 'dashboard',
-    loadChildren: './dashboard/users-dashboard.module#UsersDashboardModule'
+    path: ':username',
+    loadChildren: './myself/users-myself.module#UsersMyselfModule'
   }
 ];
+
+// users-add -> users.form
+// [{
+//   path: 'team/:id',
+//  component: Team,
+//   children: [{
+//     path: 'user/:name',
+//     component: User
+//   }]
+// }]
 
 @NgModule({
   imports: [

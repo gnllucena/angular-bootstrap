@@ -1,10 +1,12 @@
 <nav class="navbar navbar-dark bg-dark mb-5">
-  <a class="navbar-brand" routerLink="/">Angular 6 bootstrap</a>
+  <a class="navbar-brand" routerLink="/">Application Bootstrap</a>
   <div class="navbar-expand mr-auto">
     <div class="navbar-nav">
       <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Users</a>
-      <a class="nav-item nav-link" routerLink="/users/{{myself}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Myself</a>
-      <a class="nav-item nav-link" (click)="logout()" href="javascript:void(0)">Logout</a>
+      <ng-container *ngIf="authenticationService.jwt | async;">
+        <a class="nav-item nav-link" routerLink="/users/{{ username() }}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Myself</a>
+        <a class="nav-item nav-link" (click)="logout()" href="javascript:void(0)">Logout</a>
+      </ng-container>
     </div>
   </div>
 </nav>

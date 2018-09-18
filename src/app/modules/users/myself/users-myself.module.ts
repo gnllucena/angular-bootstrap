@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { UsersDashboardPageComponent } from './dashboard-page/users-dashboard-page.component';
+import { UsersMyselfPageComponent } from './myself-page/users-myself-page.component';
 
 import { AuthenticationGuardComponent } from '../../shared/authentication-guard.component';
 
 const appRoutes: Routes = [
-  { path: '', component: UsersDashboardPageComponent, canActivate: [AuthenticationGuardComponent] },
+  { path: '', component: UsersMyselfPageComponent, canActivate: [AuthenticationGuardComponent] },
 ];
 
 @NgModule({ 
   declarations: [
-    UsersDashboardPageComponent,
+    UsersMyselfPageComponent,
   ],
   imports: [
     RouterModule.forChild(appRoutes)
   ]
 })
-export class UsersDashboardModule { }
+export class UsersMyselfModule { }
