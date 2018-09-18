@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { UsersMyselfPageComponent } from './myself-page/users-myself-page.component';
 
-import { AuthenticationGuardComponent } from '../../shared/authentication-guard.component';
+import { AuthenticationGuardComponent } from '../../../core/authentication-guard.component';
 
 const appRoutes: Routes = [
   { path: '', component: UsersMyselfPageComponent, canActivate: [AuthenticationGuardComponent] },

@@ -7,16 +7,16 @@ import { HttpBearerInterceptorComponent } from './http-bearer-interceptor.compon
 import { HttpLoaderInterceptorComponent } from './http-loader-interceptor.component';
 
 @NgModule({})
-export class SharedModule {
-  constructor(@Optional() @SkipSelf() parentModule: SharedModule) {
+export class CoreModule {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {
-      throw new Error('Shared module is already loaded. Import it only in app.module.ts!');
+      throw new Error('Core module is already loaded. Import it only in app.module.ts!');
     }
   }
 
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: SharedModule,
+      ngModule: CoreModule,
       // CUIDADO COM O QUE O SENHOR COLOCA NESSE ARRAY DE PROVIDERS.
       // O SISTEMA VAI CARREGAR ISSO TUDO. EM TODOS OS MODULOS.
       providers: [

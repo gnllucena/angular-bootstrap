@@ -9,7 +9,7 @@ export const appRoutes: Routes = [
   {
     path: ':username',
     loadChildren: './myself/users-myself.module#UsersMyselfModule'
-  }
+  },
 ];
 
 // users-add -> users.form

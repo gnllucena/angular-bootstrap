@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpInterceptor, HttpResponse } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
 
-import { LoadingService } from '../../services/loading.service';
+import { LoadingService } from '../services/loading.service';
 
 @Injectable()
 export class HttpLoaderInterceptorComponent implements HttpInterceptor {

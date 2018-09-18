@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
-import { Jwt } from '../../domain/Jwt';
-import { User } from '../../domain/User';
+import { Jwt } from '../domain/Jwt';
+import { User } from '../domain/User';
 
 @Injectable()
 export class HttpBackendInterceptorComponent implements HttpInterceptor {

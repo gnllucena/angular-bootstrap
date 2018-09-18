@@ -5,8 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
-import { SharedModule } from './modules/shared/shared.module';
-import { UserInterfaceModule } from './modules/user-interface/user-interface.module';
+import { CoreModule } from './core/core.module';
+import { UIModule } from './ui/ui.module';
 
 import { AuthenticationService } from './services/authentication.service';
 import { LoadingService } from './services/loading.service';
@@ -14,19 +14,19 @@ import { LoadingService } from './services/loading.service';
 export const appRoutes: Routes = [
   {
     path: '',
-    loadChildren: './modules/index/index.module#IndexModule'
+    loadChildren: './routes/index/index.module#IndexModule'
   },
   {
     path: 'login',
-    loadChildren: './modules/login/login.module#LoginModule'
+    loadChildren: './routes/login/login.module#LoginModule'
   },
   {
     path: 'users',
-    loadChildren: './modules/users/users.module#UsersModule'
+    loadChildren: './routes/users/users.module#UsersModule'
   },
   {
     path: 'not-found',
-    loadChildren: './modules/not-found/not-found.module#NotFoundModule'
+    loadChildren: './routes/not-found/not-found.module#NotFoundModule'
   },
   { path: '**', redirectTo: 'not-found' }
 ];
@@ -38,8 +38,8 @@ export const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    UserInterfaceModule,
-    SharedModule.forRoot(),
+    UIModule,
+    CoreModule.forRoot(),
     RouterModule.forRoot(appRoutes)    
   ],
   providers: [
