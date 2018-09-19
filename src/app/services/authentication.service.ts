@@ -6,17 +6,21 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { User } from '../domain/User';
-import { Jwt } from '../domain/Jwt';
+import { User } from '../domain/user';
+import { Jwt } from '../domain/jwt';
 
 @Injectable()
 export class AuthenticationService {
   public jwt = new BehaviorSubject<Jwt>(null);
+  public username = new BehaviorSubject<String>('');
 
   constructor(private http: HttpClient) { 
-    var token = JSON.parse(localStorage.getItem('user')) as Jwt;
+    let jwt = JSON.parse(localStorage.getItem('user')) as Jwt;
 
-    this.jwt.next(token);
+    if (jwt) {
+      this.jwt.next(jwt);
+      this.username.next(jwt.Username);
+    }
   }
 
   token(): Jwt {
@@ -24,11 +28,12 @@ export class AuthenticationService {
   }
 
   login(user: User): Observable<Jwt> {
-    return this.http.post<Jwt>(environment.server + '/login', user)
+    return this.http.post<Jwt>(environment.server + '/identity', user)
       .pipe(map(jwt => {
         localStorage.setItem('user', JSON.stringify(jwt));
 
         this.jwt.next(jwt);
+        this.username.next(jwt.Username);
 
         return jwt;
       }));
@@ -42,6 +47,7 @@ export class AuthenticationService {
     localStorage.removeItem("user");
     
     this.jwt.next(null);
+    this.username.next(null);
 
     //todo: revoke token from identity server
   }

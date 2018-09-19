@@ -5,35 +5,32 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
-import { CoreModule } from './core/core.module';
-import { UIModule } from './ui/ui.module';
+import { CoreModule } from './modules/core/.core.module';
+import { UIModule } from './modules/ui/.ui.module';
 
 import { AuthenticationService } from './services/authentication.service';
 import { LoadingService } from './services/loading.service';
+import { NotFoundComponent } from './modules/ui/not-found.component';
+import { HomePageComponent } from './routes/home/home-page.component';
 
 export const appRoutes: Routes = [
   {
-    path: '',
-    loadChildren: './routes/index/index.module#IndexModule'
+    path: 'identity',
+    loadChildren: './routes/identity/identity.module#IdentityModule'
   },
   {
-    path: 'login',
-    loadChildren: './routes/login/login.module#LoginModule'
+    path: 'dot',
+    loadChildren: './routes/dot/dot.module#DotModule'
   },
-  {
-    path: 'users',
-    loadChildren: './routes/users/users.module#UsersModule'
-  },
-  {
-    path: 'not-found',
-    loadChildren: './routes/not-found/not-found.module#NotFoundModule'
-  },
+  { path: '', component: HomePageComponent },
+  { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: 'not-found' }
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
