@@ -3,7 +3,6 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor } fr
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { Jwt } from '../domain/Jwt';
-import { User } from '../domain/User';
 
 @Injectable()
 export class HttpBackendInterceptorComponent implements HttpInterceptor {
@@ -69,7 +68,7 @@ export class HttpBackendInterceptorComponent implements HttpInterceptor {
         return next.handle(req);      
       }))
       .pipe(materialize())
-      .pipe(delay(500))
+      .pipe(delay(5000))
       .pipe(dematerialize());
     }
   }

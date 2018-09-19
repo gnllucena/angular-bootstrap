@@ -27,6 +27,27 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 users page
+    componente de filtro passando emitindo dictionary
+    componente de lista recebendo dictonary
+    componente de adicao
+    componente de alteracao 
+        rota de alteracao direta no registro
+    componente de formulario
+    sessionstorage no http-backend-interceptor 
 toast
 HttpErroHandling
 Error handling
+ui.module igual ao core.module
+dockerfile
+makefile
+
+aspnetcore-bootstrap
+    users
+
+ambiente-bootstrap
+    aws
+    kube
+    api-gateway
+        https://aws.amazon.com/pt/blogs/aws-brasil/autenticacao-e-controle-de-sessao-no-api-gateway-com-lambda-e-jwt/
+        
+ci no github atraves do azure pipelines
