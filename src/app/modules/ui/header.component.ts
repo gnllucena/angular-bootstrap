@@ -12,14 +12,15 @@ import { Jwt } from '../../domain/jwt';
 
       <div id="navbarNavDropdown" class="navbar-collapse collapse">
         <ul class="navbar-nav mr-auto">
-          <ng-container *ngIf="!logged">
-            <a class="nav-item nav-link" routerLink="/identity" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Log In</a>
-          </ng-container>
           <ng-container *ngIf="logged">
             <a class="nav-item nav-link" routerLink="/dot/{{ username }}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">~/{{ username }}</a>
+            <a class="nav-item nav-link" routerLink="/dot/{{ username }}/users" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">users</a>
           </ng-container>
         </ul>
         <ul class="navbar-nav">
+          <ng-container *ngIf="!logged">
+            <a class="nav-item nav-link" routerLink="/identity" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Log In</a>
+          </ng-container>
           <ng-container *ngIf="logged">
             <a class="nav-item nav-link" (click)="logout()" href="javascript:void(0)">Log Off</a>
           </ng-container>

@@ -1,23 +1,23 @@
 <app-header></app-header>
 
-<app-breadcrumb></app-breadcrumb>
-
 <div class="container"> 
-  <dot-mine-filter></dot-mine-filter>
+  <app-breadcrumb></app-breadcrumb>
+
+  <dot-users-filter></dot-users-filter>
   <!-- (onUpdateFilters)="updateFilters($event)"> -->
 
-  <dot-mine-list></dot-mine-list>
+  <dot-users-list></dot-users-list>
     <!-- #listCanal 
       (editEvent)="openEditPanel($event)" 
       (exportList)="applyExportList($event)"> -->
     
-  <dot-mine-add></dot-mine-add>
+  <dot-users-add></dot-users-add>
     <!-- *ngIf="adding"
     #canalAdd 
     (returnSave)="added()" 
     (closeModal)="closeModal()"> -->
 
-  <dot-mine-edit></dot-mine-edit> 
+  <dot-users-edit></dot-users-edit> 
     <!-- *ngIf="editing"
     #canalEdit 
     [element]="editingElement" 

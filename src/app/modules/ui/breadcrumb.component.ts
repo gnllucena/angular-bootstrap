@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-breadcrumb',
   template: `
-    <div class="row">
+    <div class="row mb-2">
       <div class="col-12">
         <div class="page-title-box">
           <div class="page-title-right">
@@ -13,7 +13,6 @@ import { Component } from '@angular/core';
               <li class="breadcrumb-item active">Form Elements</li>
             </ol>
           </div>
-          <h4 class="page-title">Form Elements</h4>
         </div>
       </div>
     </div>

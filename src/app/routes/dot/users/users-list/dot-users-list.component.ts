@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'dot-mine-filter',
-  templateUrl: './dot-mine-filter.component.html',
+  selector: 'dot-users-list',
+  templateUrl: './dot-users-list.component.html',
   encapsulation: ViewEncapsulation.None
 })
 
-export class DotMineFilterComponent {
+export class DotUsersListComponent {
   constructor() { }
 }

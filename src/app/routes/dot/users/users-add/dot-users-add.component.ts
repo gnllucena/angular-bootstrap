@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'dot-mine-add',
-  templateUrl: './dot-mine-add.component.html',
+  selector: 'dot-users-add',
+  templateUrl: './dot-users-add.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class DotMineAddComponent {
+export class DotUsersAddComponent {
   title = 'Add';
 
   constructor() { }

@@ -4,13 +4,13 @@ import { UIModule } from '../../modules/ui/.ui.module';
 
 export const appRoutes: Routes = [
   {
-    path: '',
-    loadChildren: './mine/dot-mine.module#DotMineModule'
+    path: ':username/users',
+    loadChildren: './users/dot-users.module#DotUsersModule'
   },
   {
     path: ':username',
     loadChildren: './myself/dot-myself.module#DotMyselfModule'
-  },
+  }
 ];
 
 // users-add -> users.form

@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'dot-mine-list',
-  templateUrl: './dot-mine-list.component.html',
+  selector: 'dot-users-form',
+  templateUrl: './dot-users-form.component.html',
   encapsulation: ViewEncapsulation.None
 })
 
-export class DotMineListComponent {
+export class DotUsersFormComponent {
   constructor() { }
 }

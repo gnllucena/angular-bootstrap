@@ -3,12 +3,12 @@ import { AuthenticationService } from '../../../../services/authentication.servi
 import { Jwt } from '../../../../domain/jwt';
 
 @Component({
-  selector: 'dot-mine-page',
-  templateUrl: './dot-mine-page.component.html',
+  selector: 'dot-users-page',
+  templateUrl: './dot-users-page.component.html',
   encapsulation: ViewEncapsulation.None
 })
 
-export class DotMinePageComponent {
+export class DotUsersPageComponent {
   title = '';
 
   constructor(private authenticationService: AuthenticationService) { 
