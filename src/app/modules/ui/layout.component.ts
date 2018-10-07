@@ -8,6 +8,8 @@ import { LoadingService } from '../../services/loading.service';
       <div class="loading">Loading&#8230;</div>
     </ng-container>
 
+    <app-header></app-header>
+
     <ng-content></ng-content>
   `,
   styles: []

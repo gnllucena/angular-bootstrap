@@ -1,11 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'dot-users-filter',
-  templateUrl: './dot-users-filter.component.html',
+  selector: 'users-add',
+  templateUrl: './users-add.component.html',
   encapsulation: ViewEncapsulation.None
 })
+export class UsersAddComponent {
+  title = 'Add';
 
-export class DotUsersFilterComponent {
   constructor() { }
 }

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 
@@ -16,11 +17,18 @@ import { HomePageComponent } from './routes/home/home-page.component';
 export const appRoutes: Routes = [
   {
     path: 'identity',
-    loadChildren: './routes/identity/identity.module#IdentityModule'
+    loadChildren: './routes/identity/identity.module#IdentityModule',
+    data: { state: 'identity' }
   },
   {
     path: 'dot',
-    loadChildren: './routes/dot/dot.module#DotModule'
+    loadChildren: './routes/dot/dot.module#DotModule',
+    data: { state: 'dot' }
+  },
+  {
+    path: 'users',
+    loadChildren: './routes/users/users.module#UsersModule',
+    data: { state: 'users' }
   },
   { path: '', component: HomePageComponent },
   { path: 'not-found', component: NotFoundComponent },
@@ -34,6 +42,7 @@ export const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     UIModule,
     CoreModule.forRoot(),

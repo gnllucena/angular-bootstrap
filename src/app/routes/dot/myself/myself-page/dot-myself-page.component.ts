@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AuthenticationService } from '../../../../services/authentication.service';
-import { Jwt } from '../../../../domain/jwt';
+import { Jwt } from './../../../../domain/Jwt';
 
 @Component({
   selector: 'dot-myself-page',

@@ -1,53 +1,22 @@
-# Frontend
+make install
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.
+make run
 
-## Development server
+make deploy
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+https://itnext.io/angular-animations-stagger-over-static-and-async-data-3907c4889479
+https://itnext.io/angular-animations-stagger-over-static-and-async-data-3907c4889479
+https://netbasal.com/creating-reusable-animations-in-angular-6a2350d6191a
 
-## Code scaffolding
+https://medium.com/@tanya/angular4-animated-route-transitions-b5b9667cd67c
+https://medium.freecodecamp.org/best-practices-for-a-clean-and-performant-angular-application-288e7b39eb6f
+https://tomastrajan.github.io/angular-ngrx-material-starter#/examples/stock-market https://medium.com/@asm/animated-slide-panel-with-angular-e985ad646f9 https://medium.com/google-developer-experts/angular-supercharge-your-router-transitions-using-new-animation-features-v4-3-3eb341ede6c8 https://stackblitz.com/edit/angular-motion-v6-c?file=app%2Fapp.module.ts 
+https://stackblitz.com/edit/angular-child-route-animation?file=src%2Fapp%2Fanimations%2Frouter.animation.ts
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+toast HttpErroHandling Error handling dockerfile makefile
 
-## Build
+aspnetcore-bootstrap users
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+ambiente-bootstrap aws kube api-gateway https://aws.amazon.com/pt/blogs/aws-brasil/autenticacao-e-controle-de-sessao-no-api-gateway-com-lambda-e-jwt/
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-users page
-    componente de filtro passando emitindo dictionary
-    componente de lista recebendo dictonary
-    componente de adicao
-    componente de alteracao 
-        rota de alteracao direta no registro
-    componente de formulario
-    sessionstorage no http-backend-interceptor 
-toast
-HttpErroHandling
-Error handling
-ui.module igual ao core.module
-dockerfile
-makefile
-
-aspnetcore-bootstrap
-    users
-
-ambiente-bootstrap
-    aws
-    kube
-    api-gateway
-        https://aws.amazon.com/pt/blogs/aws-brasil/autenticacao-e-controle-de-sessao-no-api-gateway-com-lambda-e-jwt/
-        
 ci no github atraves do azure pipelines

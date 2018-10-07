@@ -1,9 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../../../domain/user';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from '../../../services/authentication.service';
-import { Jwt } from '../../../domain/jwt';
+import { AuthenticationService } from './../../../services/authentication.service';
+import { Jwt } from './../../../domain/Jwt';
 
 @Component({
   selector: 'identity-page',
@@ -23,18 +22,13 @@ export class IdentityPageComponent {
     private route: ActivatedRoute,
     private authenticationService: AuthenticationService) { 
 
-    let user = new User();
-
-    user.Email = "gnllucena@gmail.com";
-    user.Password = "asdfas";
-
     this.form = this.formBuilder.group({
       Email: this.formBuilder.control({
-        value: user.Email || null,
+        value: null,
         disabled: false,
       }, [Validators.required, Validators.email]),
       Password: this.formBuilder.control({
-        value: user.Password || null,
+        value: null,
         disabled: false
       }, [Validators.required, Validators.minLength(6)]),
     });
@@ -47,7 +41,7 @@ export class IdentityPageComponent {
       return;
     }
     
-    var user = this.form.getRawValue() as User;
+    var user = this.form.getRawValue();
 
     this.authenticationService.login(user)
       .subscribe((jwt: Jwt) => {

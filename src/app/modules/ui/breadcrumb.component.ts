@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-breadcrumb',
   template: `
-    <div class="row mb-2">
+    <div class="row mb-2 ">
       <div class="col-12">
         <div class="page-title-box">
           <div class="page-title-right">
