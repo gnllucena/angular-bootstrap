@@ -1,5 +1,27 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+
+label {
+  display:block;
+}
+
+.icons {
+  padding: 17px;
+}
+
+.card .form-group {
+   display:inline-block;
+   margin-bottom: 0;
+
+   label {
+    margin-bottom: 0;
+   }
+}
+
+.card a {
+  margin-left: 10px;
+}
+
 .loading {
   position: fixed;
   z-index: 999;

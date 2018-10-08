@@ -13,6 +13,8 @@ import { UsersFormComponent } from './users-form/users-form.component';
 import { UsersFilterComponent } from './users-filter/users-filter.component';
 import { UsersEditComponent } from './users-edit/users-edit.component';
 import { UsersAddComponent } from './users-add/users-add.component';
+import { UsersService } from './users.service';
+import { CommonModule } from '@angular/common';
 
 const appRoutes: Routes = [
   { path: '', component: UsersPageComponent, canActivate: [AuthenticationGuard] },
@@ -40,7 +42,11 @@ const appRoutes: Routes = [
   imports: [
     UIModule,
     FontAwesomeModule,
+    CommonModule,
     RouterModule.forChild(appRoutes)
+  ],
+  providers: [
+    UsersService
   ]
 })
 export class UsersModule { }

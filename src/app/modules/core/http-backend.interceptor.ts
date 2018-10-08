@@ -3,6 +3,8 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor } fr
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { Jwt } from './../../domain/Jwt';
+import { Card } from './../../domain/card';
+import { User } from './../../domain/User';
 
 @Injectable()
 export class HttpBackendInterceptor implements HttpInterceptor {
@@ -11,7 +13,8 @@ export class HttpBackendInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.url.endsWith('/identity') || 
         req.url.endsWith('/users') || 
-        req.url.endsWith('/error')) {
+        req.url.endsWith('/error') || 
+        req.url.endsWith('/cards')) {
 
       return of(null).pipe(mergeMap(() => {
         if (req.url.endsWith('/identity') && req.method === 'POST') {
@@ -29,34 +32,37 @@ export class HttpBackendInterceptor implements HttpInterceptor {
           return of(new HttpResponse({ status: 200, body: jwt }));
         }
   
+        if (req.url.endsWith('/cards') && req.method === 'GET') {
+          let cards: Card[] = [];
+          
+          var card: Card = {
+            Title: 'Card title',
+            Description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content.',
+            Link: 'Dapibus ac facilisis in'
+          }
+
+          for (let i = 0; i < 9; i++) {
+            cards.push(card);
+          }
+    
+          return of(new HttpResponse({ status: 200, body: cards }));
+        }
+
         if (req.url.endsWith('/users') && req.method === 'GET') {
-          let users = [
-            {
-              id: 1,
-              email: "cecilharvey@gmail.com",
-              name: "Cecil Harvey"
-            },
-            {
-              id: 2,
-              email: "tidusjecht@gmail.com",
-              name: "Tidus Jecht"
-            },
-            {
-              id: 3,
-              email: "squall.leonhart@gmail.com",
-              name: "Squall Leonhart"
-            },
-            {
-              id: 4,
-              email: "cloudstrife@gmail.com",
-              name: "Cloud Strife"
-            },
-            {
-              id: 5,
-              email: "kaindragon@gmail.com",
-              name: "Kain Dragon"
-            }
-          ];
+          let users: User[] = [];
+          
+          var data = new Date();
+
+          var user: User = {
+            Name: 'Gabriel Lucena',
+            Email: 'gnllucena@gmail.com',
+            Document: '023.437.673-27',
+            Birthdate:  new Date('1991-04-28T12:00:00')
+          }
+
+          for (let i = 0; i < 10; i++) {
+            users.push(user);
+          }
     
           return of(new HttpResponse({ status: 200, body: users }));
         }

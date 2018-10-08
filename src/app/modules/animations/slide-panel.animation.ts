@@ -7,5 +7,5 @@ export const SlidePanelAnimation = trigger('slide-transition', [
   state('right', style({ 
     transform: 'translateX(-50%)' 
   })),
-  transition('* => *', animate(300))
+  transition('* => *', animate(150))
 ])

@@ -1,111 +1,19 @@
 <div class="container">
   <h2 class="mb-4">Cards</h2>
-
-  <div class="mb-5">
-    <div class="row mb-4">
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        <div class="card" style="width: 18rem;">
+  
+  <ng-container *ngIf='cards | async as items'>
+    <div [@list-transition]='items.length' class="row">
+      <div *ngFor="let card of items" class="col-lg-4 mb-lg-0">
+        <div class="card mb-4" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 class="card-title">{{ card.Title }}</h5>
+            <p class="card-text">{{ card.Description }}</p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">{{ card.Link }}</li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="row mb-4">
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-4">
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+  </ng-container>
 </div>

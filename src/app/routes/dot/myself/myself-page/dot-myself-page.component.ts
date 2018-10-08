@@ -1,26 +1,25 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../../../services/authentication.service';
-import { Jwt } from './../../../../domain/Jwt';
+import { DotService } from './../../dot.service';
+import { Card } from './../../../../domain/card';
+import { ListAnimation } from './../../../../modules/animations/list.animation';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'dot-myself-page',
   templateUrl: './dot-myself-page.component.html',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  animations: [ ListAnimation ],
 })
 
-export class DotMyselfPageComponent {
-  title = 'Myself';
-
+export class DotMyselfPageComponent implements OnInit {
+  public cards: Observable<Card[]>;
+  
   constructor(
-    public authenticationService: AuthenticationService) { }
+    public authenticationService: AuthenticationService,
+    public dotService: DotService) { }
 
-  public email(): String {
-    var jwt = this.authenticationService.token() as Jwt;
-
-    if (jwt) {
-      return jwt.Email;
-    }
-
-    return '';
+  ngOnInit(): void {
+    this.cards = this.dotService.get();
   }
 }
