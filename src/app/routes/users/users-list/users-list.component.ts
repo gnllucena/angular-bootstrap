@@ -1,9 +1,11 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, Input } from '@angular/core';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { ListAnimation } from './../../../modules/animations/list.animation';
-import { User } from './../../../domain/User';
+import { User } from './../../../domain/user';
 import { Observable } from 'rxjs';
 import { UsersService } from './../users.service';
+import { Pagination } from 'src/app/domain/pagination';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'users-list',
@@ -13,14 +15,26 @@ import { UsersService } from './../users.service';
 })
 
 export class UsersListComponent implements OnInit {
-  public users: Observable<User[]>;
+  @Input() filters: FormGroup;
+  
   public faTrash = faTrash;
   public faEdit = faEdit;
-  
+  public pagination: Observable<Pagination<User>>;
+
   constructor(
     public userService: UsersService) { }
 
   ngOnInit(): void {
-    this.users = this.userService.get();
+    this.list(0, 10);
+  }
+
+  filter(filters: FormGroup) {
+    this.filters = filters;
+
+    this.list(0, 10);
+  }
+
+  list(offset: Number, limit: Number): void {
+    this.pagination = this.userService.get(offset, limit, this.filters);
   }
 }

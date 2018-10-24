@@ -18,10 +18,8 @@ export const ListAnimation = trigger('list-transition', [
     ),
     query(':leave', 
       [
-        animate('50ms', 
-          style({ 
-            opacity: 0 
-          }))
+        style({ opacity: 1 }),
+        animate('0.5s', style({ opacity: 0 }))
       ],
       { optional: true}
     ) 

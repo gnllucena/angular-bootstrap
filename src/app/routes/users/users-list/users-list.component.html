@@ -1,6 +1,6 @@
-<ng-container *ngIf='users | async as items'>
-  <div [@list-transition]='items.length'>
-    <div *ngFor="let user of items">
+<ng-container *ngIf='pagination | async as pagination'>
+  <div [@list-transition]='pagination.Items.length'>
+    <div *ngFor="let user of pagination.Items">
       <div class="card mb-2" style="padding: 15px;">
         <div class="row justify-content-sm-between align-items-sm-center">
           <div class="col-md-2">

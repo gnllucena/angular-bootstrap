@@ -2,22 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
-import { Jwt } from './../../domain/Jwt';
+import { Jwt } from '../../domain/jwt';
 import { Card } from './../../domain/card';
-import { User } from './../../domain/User';
+import { User } from '../../domain/user';
+import { Pagination } from 'src/app/domain/pagination';
 
 @Injectable()
 export class HttpBackendInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.url.endsWith('/identity') || 
-        req.url.endsWith('/users') || 
-        req.url.endsWith('/error') || 
-        req.url.endsWith('/cards')) {
+    if (req.url.startsWith('http://localhost:5000/identity') || 
+        req.url.startsWith('http://localhost:5000/users') || 
+        req.url.startsWith('http://localhost:5000/error') || 
+        req.url.startsWith('http://localhost:5000/cards')) {
 
       return of(null).pipe(mergeMap(() => {
-        if (req.url.endsWith('/identity') && req.method === 'POST') {
+        if (req.url.startsWith('http://localhost:5000/identity') && req.method === 'POST') {
           var data = new Date();
           data.setDate(data.getDate() + 1);
           
@@ -32,7 +33,7 @@ export class HttpBackendInterceptor implements HttpInterceptor {
           return of(new HttpResponse({ status: 200, body: jwt }));
         }
   
-        if (req.url.endsWith('/cards') && req.method === 'GET') {
+        if (req.url.startsWith('http://localhost:5000/cards') && req.method === 'GET') {
           let cards: Card[] = [];
           
           var card: Card = {
@@ -48,7 +49,7 @@ export class HttpBackendInterceptor implements HttpInterceptor {
           return of(new HttpResponse({ status: 200, body: cards }));
         }
 
-        if (req.url.endsWith('/users') && req.method === 'GET') {
+        if (req.url.startsWith('http://localhost:5000/users') && req.method === 'GET') {
           let users: User[] = [];
           
           var data = new Date();
@@ -63,11 +64,18 @@ export class HttpBackendInterceptor implements HttpInterceptor {
           for (let i = 0; i < 10; i++) {
             users.push(user);
           }
+
+          let pagination: Pagination<User> = {
+            Items: users,
+            Limit: 10,
+            Offset: 0,
+            Total: 192
+          };
     
-          return of(new HttpResponse({ status: 200, body: users }));
+          return of(new HttpResponse({ status: 200, body: pagination }));
         }
   
-        if (req.url.endsWith('/error') && req.method === 'GET') {
+        if (req.url.startsWith('http://localhost:5000/error') && req.method === 'GET') {
           return throwError({ error: { message: 'Error thrown.' } });
         }
           

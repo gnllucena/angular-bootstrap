@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Jwt } from './../domain/Jwt';
-import { User } from './../domain/User';
+import { Jwt } from '../domain/jwt';
+import { User } from '../domain/user';
 
 @Injectable()
 export class AuthenticationService {

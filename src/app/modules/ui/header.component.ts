@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './../../services/authentication.service';
-import { Jwt } from './../../domain/Jwt';
+import { Jwt } from '../../domain/jwt';
 
 @Component({
   selector: 'app-header',

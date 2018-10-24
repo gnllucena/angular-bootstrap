@@ -1,12 +1,14 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-
-label {
-  display:block;
+.form-control:focus {
+  border-color: #cccccc;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
-.icons {
-  padding: 17px;
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none;
 }
 
 .card .form-group {
@@ -15,6 +17,7 @@ label {
 
    label {
     margin-bottom: 0;
+    display:block;
    }
 }
 

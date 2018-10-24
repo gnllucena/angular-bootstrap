@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './../../../services/authentication.service';
-import { Jwt } from './../../../domain/Jwt';
+import { Jwt } from '../../../domain/jwt';
 
 @Component({
   selector: 'identity-page',

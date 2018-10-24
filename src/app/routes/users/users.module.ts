@@ -15,6 +15,7 @@ import { UsersEditComponent } from './users-edit/users-edit.component';
 import { UsersAddComponent } from './users-add/users-add.component';
 import { UsersService } from './users.service';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: '', component: UsersPageComponent, canActivate: [AuthenticationGuard] },
@@ -43,6 +44,8 @@ const appRoutes: Routes = [
     UIModule,
     FontAwesomeModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(appRoutes)
   ],
   providers: [

@@ -3,10 +3,12 @@
 
   <slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
     <div left-panel>
-      <users-filter></users-filter>
-      <!-- (onUpdateFilters)="updateFilters($event)"> -->
+      <users-filter #userFilter 
+        (filterEvent)="filter($event)">
+      </users-filter>
     
-      <users-list></users-list>
+      <users-list #userList>
+      </users-list>
         <!-- #listCanal 
           (editEvent)="openEditPanel($event)" 
           (exportList)="applyExportList($event)"> -->
