@@ -1,28 +1,23 @@
-<div class="container"> 
+<div class="container mb-5"> 
   <h2 class="mb-4">Users</h2>
 
-  <slide-panel [activePane]="isLeftVisible ? 'left' : 'right'">
-    <div left-panel>
-      <users-filter #userFilter 
-        (filterEvent)="filter($event)">
-      </users-filter>
-    
-      <users-list #userList>
-      </users-list>
-        <!-- #listCanal 
-          (editEvent)="openEditPanel($event)" 
-          (exportList)="applyExportList($event)"> -->
-    </div>
-    <div right-panel>
-      <users-add></users-add>
-      <!-- *ngIf="adding"
-      #canalAdd 
-      (returnSave)="added()" 
-      (closeModal)="closeModal()"> -->
-  
-      <users-edit></users-edit> 
-    </div>
-  </slide-panel>
-  
-  <button (click)="isLeftVisible = !isLeftVisible">Toggle panes</button>
+  <users-filter #userFilter 
+    (filterEvent)="filter($event)">
+  </users-filter>
+
+  <users-list #userList>
+  </users-list>
+    <!-- #listCanal 
+      (editEvent)="openEditPanel($event)" 
+      (exportList)="applyExportList($event)"> -->
+
+  <users-add #userAdd
+    [hidden]="add">
+  </users-add>
+  <!-- *ngIf="adding"
+  #canalAdd 
+  (returnSave)="added()" 
+  (closeModal)="closeModal()"> -->
+
+  <!-- <users-edit></users-edit>  -->
 </div>

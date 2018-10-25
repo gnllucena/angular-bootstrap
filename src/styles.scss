@@ -1,5 +1,39 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+.fullscreen {
+  position:fixed;
+  padding:0;
+  margin:0;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.3);  
+}
+
+.panel {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid rgba(230,230,230,.8); 
+  box-shadow: 0 0 30px 0 rgba(0,0,0,.19);
+  overflow-y: scroll; 
+  height: 100%;
+  width: 66.6%;
+}
+
+.blur {
+  -webkit-filter: blur(3px);
+	-moz-filter: blur(3px);
+	-o-filter: blur(3px);
+	-ms-filter: blur(3px);
+	filter: blur(3px);
+}
+
 .form-control:focus {
   border-color: #cccccc;
   -webkit-box-shadow: none;
