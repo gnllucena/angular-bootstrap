@@ -4,8 +4,8 @@ import { UsersListComponent } from '../users-list/users-list.component';
 import { UsersFilterComponent } from '../users-filter/users-filter.component';
 import { FormGroup } from '@angular/forms';
 import { UsersAddComponent } from '../users-add/users-add.component';
-
-type PaneType = 'left' | 'right';
+import { User } from 'src/app/domain/user';
+import { UsersEditComponent } from '../users-edit/users-edit.component';
 
 @Component({
   selector: 'users-page',
@@ -14,20 +14,26 @@ type PaneType = 'left' | 'right';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersPageComponent {
-  title = 'Users';
-  
-  @Input() activePane: PaneType = 'left';
   @ViewChild('userFilter') userFilter: UsersFilterComponent;
   @ViewChild('userList') userList: UsersListComponent;
   @ViewChild('userAdd') userAdd: UsersAddComponent;
+  @ViewChild('userEdit') userEdit: UsersEditComponent;
 
-  public add = false;
-  public edit = false;
-  
   constructor(
     private authenticationService: AuthenticationService) { }
 
-  filter(filters: FormGroup) {
+  filter(filters: FormGroup): void {
     this.userList.filter(filters);
+  }
+
+  add(): void {
+    this.userEdit.visible = !this.userEdit.visible;
+  }
+
+  edit(user: User): void {
+    this.userEdit.visible = !this.userEdit.visible;
+  }
+
+  delete(user: User): void {
   }
 }

@@ -28,10 +28,10 @@
             </div>
           </div>
           <div class="col-2 col-md-1">
-            <a href="javascript:void(0);" class="action-icon">
+            <a (click)="edit(user)" href="javascript:void(0);" class="action-icon">
               <fa-icon [icon]="faEdit"></fa-icon>
             </a>
-            <a href="javascript:void(0);" class="action-icon">
+            <a (click)="delete(user)" href="javascript:void(0);" class="action-icon">
               <fa-icon [icon]="faTrash"></fa-icon>
             </a>
           </div>

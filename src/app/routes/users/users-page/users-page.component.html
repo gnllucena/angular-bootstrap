@@ -1,23 +1,20 @@
 <div class="container mb-5"> 
   <h2 class="mb-4">Users</h2>
 
-  <users-filter #userFilter 
+  <users-filter 
+    #userFilter 
     (filterEvent)="filter($event)">
   </users-filter>
 
-  <users-list #userList>
+  <users-list 
+    #userList
+    (editEvent)="edit($event)">
   </users-list>
-    <!-- #listCanal 
-      (editEvent)="openEditPanel($event)" 
-      (exportList)="applyExportList($event)"> -->
 
-  <users-add #userAdd
-    [hidden]="add">
-  </users-add>
-  <!-- *ngIf="adding"
-  #canalAdd 
-  (returnSave)="added()" 
-  (closeModal)="closeModal()"> -->
+  <!-- <users-add 
+    #userAdd
+    [visible]="adding">
+  </users-add> -->
 
-  <!-- <users-edit></users-edit>  -->
+  <users-edit #userEdit></users-edit>
 </div>

@@ -7,7 +7,6 @@ import { HeaderComponent } from './header.component';
 import { FooterComponent } from './footer.component';
 import { BreadcrumbComponent } from './breadcrumb.component';
 import { NotFoundComponent } from './not-found.component';
-import { SlidePanelComponent } from './slide-panel.component';
 
 @NgModule({
   imports: [
@@ -19,16 +18,14 @@ import { SlidePanelComponent } from './slide-panel.component';
     HeaderComponent, 
     FooterComponent,
     BreadcrumbComponent,
-    NotFoundComponent,
-    SlidePanelComponent
+    NotFoundComponent
   ],
   exports: [
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
     BreadcrumbComponent,
-    NotFoundComponent,
-    SlidePanelComponent
+    NotFoundComponent
   ]
 })
 export class UIModule { }

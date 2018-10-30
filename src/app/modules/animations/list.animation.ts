@@ -5,7 +5,8 @@ export const ListAnimation = trigger('list-transition', [
     query(':enter',
       [
         style({ opacity: 0, transform: 'translateY(15px)' }),
-        stagger('120ms',
+        stagger(
+          '120ms',
           animate('550ms ease-out',
             style({ 
               opacity: 1, 
