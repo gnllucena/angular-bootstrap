@@ -1,7 +1,13 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+body {
+  &.panel-open {
+    overflow: hidden;
+  }
+}
+
 .overlay {
-  position:fixed;
+  position: fixed;
   padding:0;
   margin:0;
   top:0;

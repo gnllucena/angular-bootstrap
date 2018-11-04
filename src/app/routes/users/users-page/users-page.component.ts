@@ -1,5 +1,4 @@
-import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy, ViewChild } from '@angular/core';
-import { AuthenticationService } from './../../../services/authentication.service';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { UsersListComponent } from '../users-list/users-list.component';
 import { UsersFilterComponent } from '../users-filter/users-filter.component';
 import { FormGroup } from '@angular/forms';
@@ -19,19 +18,16 @@ export class UsersPageComponent {
   @ViewChild('userAdd') userAdd: UsersAddComponent;
   @ViewChild('userEdit') userEdit: UsersEditComponent;
 
-  constructor(
-    private authenticationService: AuthenticationService) { }
-
   filter(filters: FormGroup): void {
     this.userList.filter(filters);
   }
 
   add(): void {
-    this.userEdit.visible = !this.userEdit.visible;
+    this.userEdit.visible.next(true);
   }
 
   edit(user: User): void {
-    this.userEdit.visible = !this.userEdit.visible;
+    this.userEdit.visible.next(true);
   }
 
   delete(user: User): void {
