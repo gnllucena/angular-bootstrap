@@ -17,10 +17,10 @@ export class UsersEditComponent {
   constructor(private renderer: Renderer2) {
     this.visible.subscribe((visible: boolean) => {
       if (visible) {
-        this.renderer.addClass(document.body, 'overlay');
+        this.renderer.addClass(document.body, 'overflow');
         this.renderer.setProperty(this.panel.nativeElement, 'scrollTop', '0');
       } else {
-        this.renderer.removeClass(document.body, 'overlay'); 
+        this.renderer.removeClass(document.body, 'overflow'); 
       }
     });
   }

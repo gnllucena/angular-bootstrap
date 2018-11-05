@@ -1,3 +1,5 @@
 <app-layout [@route-transition]="state(outlet)">
+  <div [hidden]="!(loadingService.loading | async)" class="loading">Loading&#8230;</div>
+
   <router-outlet #outlet="outlet"></router-outlet>
 </app-layout>

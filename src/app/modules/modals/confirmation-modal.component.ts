@@ -18,9 +18,9 @@ export class ConfirmationModalComponent {
   constructor(private renderer: Renderer2) {
     this.visible.subscribe((visible: boolean) => {
       if (visible) {
-        this.renderer.addClass(document.body, 'overlay');
+        this.renderer.addClass(document.body, 'overflow');
       } else {
-        this.renderer.removeClass(document.body, 'overlay'); 
+        this.renderer.removeClass(document.body, 'overflow'); 
       }
     });
   }
