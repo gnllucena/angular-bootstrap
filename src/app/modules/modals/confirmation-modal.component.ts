@@ -1,15 +1,16 @@
-import { Component, ViewEncapsulation, Renderer2, ViewChild, ElementRef } from '@angular/core';
-import { PanelAnimation } from 'src/app/modules/animations/panel.animation';
-import { OverlayAnimation } from 'src/app/modules/animations/overlay.animation';
+import { Component, ViewEncapsulation, ElementRef, ViewChild, Renderer2 } from '@angular/core';
+import { OverlayAnimation } from '../animations/overlay.animation';
 import { BehaviorSubject } from 'rxjs';
+import { ModalAnimation } from '../animations/modal.animation';
 
 @Component({
-  selector: 'users-edit',
-  templateUrl: './users-edit.component.html',
+  selector: 'confirmation-modal',
+  templateUrl: './confirmation-modal.component.html',
   encapsulation: ViewEncapsulation.None,
-  animations: [ PanelAnimation, OverlayAnimation ],
+  animations: [ OverlayAnimation, ModalAnimation ],
 })
-export class UsersEditComponent {
+
+export class ConfirmationModalComponent {
   @ViewChild('panel') panel: ElementRef;
   
   public visible = new BehaviorSubject<Boolean>(false);
@@ -18,7 +19,6 @@ export class UsersEditComponent {
     this.visible.subscribe((visible: boolean) => {
       if (visible) {
         this.renderer.addClass(document.body, 'overlay');
-        this.renderer.setProperty(this.panel.nativeElement, 'scrollTop', '0');
       } else {
         this.renderer.removeClass(document.body, 'overlay'); 
       }

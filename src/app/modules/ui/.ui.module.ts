@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header.component';
 import { FooterComponent } from './footer.component';
-import { BreadcrumbComponent } from './breadcrumb.component';
 import { NotFoundComponent } from './not-found.component';
 
 @NgModule({
@@ -17,14 +16,12 @@ import { NotFoundComponent } from './not-found.component';
     LayoutComponent, 
     HeaderComponent, 
     FooterComponent,
-    BreadcrumbComponent,
     NotFoundComponent
   ],
   exports: [
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
-    BreadcrumbComponent,
     NotFoundComponent
   ]
 })

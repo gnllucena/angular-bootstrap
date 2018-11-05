@@ -11,8 +11,7 @@ import { LoadingService } from '../../services/loading.service';
     <app-header></app-header>
 
     <ng-content></ng-content>
-  `,
-  styles: []
+  `
 })
 export class LayoutComponent {
   constructor(public loadingService: LoadingService) { }

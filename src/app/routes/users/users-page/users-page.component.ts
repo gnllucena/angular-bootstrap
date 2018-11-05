@@ -5,6 +5,7 @@ import { FormGroup } from '@angular/forms';
 import { UsersAddComponent } from '../users-add/users-add.component';
 import { User } from 'src/app/domain/user';
 import { UsersEditComponent } from '../users-edit/users-edit.component';
+import { ConfirmationModalComponent } from 'src/app/modules/modals/confirmation-modal.component';
 
 @Component({
   selector: 'users-page',
@@ -17,9 +18,10 @@ export class UsersPageComponent {
   @ViewChild('userList') userList: UsersListComponent;
   @ViewChild('userAdd') userAdd: UsersAddComponent;
   @ViewChild('userEdit') userEdit: UsersEditComponent;
+  @ViewChild('userDelete') userDelete: ConfirmationModalComponent;
 
   filter(filters: FormGroup): void {
-    this.userList.filter(filters);
+    this.userList.list(0, 10, filters);
   }
 
   add(): void {
@@ -31,5 +33,18 @@ export class UsersPageComponent {
   }
 
   delete(user: User): void {
+    this.userDelete.visible.next(true);
+  }
+
+  applyAdd() {
+
+  }
+
+  applyEdit() {
+
+  }
+
+  applyDelete() {
+
   }
 }

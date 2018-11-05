@@ -8,7 +8,8 @@
 
   <users-list 
     #userList
-    (editEvent)="edit($event)">
+    (editEvent)="edit($event)"
+    (deleteEvent)="delete($event)">
   </users-list>
 
   <!-- <users-add 
@@ -16,5 +17,11 @@
     [visible]="adding">
   </users-add> -->
 
-  <users-edit #userEdit></users-edit>
+  <users-edit 
+    #userEdit>
+  </users-edit>
+
+  <confirmation-modal 
+    #userDelete>
+  </confirmation-modal>
 </div>

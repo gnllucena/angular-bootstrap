@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UIModule } from './../../modules/ui/.ui.module';
+import { ModalsModule } from './../../modules/modals/.modals.module';
 
 import { AuthenticationGuard } from './../../modules/core/authentication.guard';
 
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     UIModule,
+    ModalsModule,
     FontAwesomeModule,
     CommonModule,
     FormsModule,

@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { ListAnimation } from './../../../modules/animations/list.animation';
-import { User } from './../../../domain/user';
+import { User } from '../../../domain/user';
 import { Observable } from 'rxjs';
 import { UsersService } from './../users.service';
 import { Pagination } from 'src/app/domain/pagination';
@@ -15,7 +15,6 @@ import { FormGroup } from '@angular/forms';
 })
 
 export class UsersListComponent implements OnInit {
-  @Input() filters: FormGroup;
   @Output() editEvent: EventEmitter<User> = new EventEmitter<User>();
   @Output() deleteEvent: EventEmitter<User> = new EventEmitter<User>();
 
@@ -27,13 +26,7 @@ export class UsersListComponent implements OnInit {
     public userService: UsersService) { }
 
   ngOnInit(): void {
-    this.list(0, 10);
-  }
-
-  filter(filters: FormGroup): void {
-    this.filters = filters;
-
-    this.list(0, 10);
+    this.list(0, 10, null);
   }
 
   edit(user: User): void {
@@ -44,7 +37,7 @@ export class UsersListComponent implements OnInit {
     this.deleteEvent.emit(user);
   }
 
-  list(offset: Number, limit: Number): void {
-    this.pagination = this.userService.get(offset, limit, this.filters);
+  list(offset: Number, limit: Number, filters: FormGroup): void {
+    this.pagination = this.userService.get(offset, limit, filters);
   }
 }

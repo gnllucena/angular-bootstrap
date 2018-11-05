@@ -18,8 +18,6 @@ export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
-      // CUIDADO COM O QUE O SENHOR COLOCA NESSE ARRAY DE PROVIDERS.
-      // O SISTEMA VAI CARREGAR ISSO TUDO. EM TODOS OS MODULOS.
       providers: [
         { provide: LOCALE_ID, useValue: 'pt-BR' },
         { provide: HTTP_INTERCEPTORS, useClass: HttpLoaderInterceptor, multi: true },
