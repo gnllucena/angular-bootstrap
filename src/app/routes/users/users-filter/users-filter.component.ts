@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
@@ -8,7 +8,7 @@ import { debounceTime } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None
 })
 
-export class UsersFilterComponent implements OnInit {
+export class UsersFilterComponent {
   @Output() filterEvent: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
   
   public filters = new FormGroup({
@@ -17,7 +17,7 @@ export class UsersFilterComponent implements OnInit {
     Document: new FormControl()
   });
 
-  ngOnInit(): void {
+  constructor() {
     this.filters.controls.Name.valueChanges.pipe(
       debounceTime(500)).subscribe(() => {
         this.filter();

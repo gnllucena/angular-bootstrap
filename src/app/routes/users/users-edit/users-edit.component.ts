@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { faTimes, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { PanelAnimation } from 'src/app/modules/animations/panel.animation';
 import { OverlayAnimation } from 'src/app/modules/animations/overlay.animation';
 import { BehaviorSubject } from 'rxjs';
@@ -13,6 +14,7 @@ export class UsersEditComponent {
   @ViewChild('panel') panel: ElementRef;
   
   public visible = new BehaviorSubject<Boolean>(false);
+  public faTimes: IconDefinition = faTimes;
 
   constructor(private renderer: Renderer2) {
     this.visible.subscribe((visible: boolean) => {

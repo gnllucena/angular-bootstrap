@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, Output, EventEmitter } from '@angular/core';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { ListAnimation } from './../../../modules/animations/list.animation';
 import { User } from '../../../domain/user';
@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { UsersService } from './../users.service';
 import { Pagination } from 'src/app/domain/pagination';
 import { FormGroup } from '@angular/forms';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'users-list',
@@ -18,8 +19,8 @@ export class UsersListComponent implements OnInit {
   @Output() editEvent: EventEmitter<User> = new EventEmitter<User>();
   @Output() deleteEvent: EventEmitter<User> = new EventEmitter<User>();
 
-  public faTrash = faTrash;
-  public faEdit = faEdit;
+  public faTrash: IconDefinition = faTrash;
+  public faEdit: IconDefinition = faEdit;
   public pagination: Observable<Pagination<User>>;
 
   constructor(

@@ -9,13 +9,7 @@ import { LoadingService } from './services/loading.service';
   animations: [ RouterAnimation ],
 })
 export class AppComponent {
-  public visible: boolean = false;
-
-  constructor(public loadingService: LoadingService) { 
-    loadingService.loading.subscribe((loading: boolean) => {
-      this.visible = loading;
-    })
-  }
+  constructor(public loadingService: LoadingService) { }
 
   state(outlet) {
     return outlet.isActivated ? outlet.activatedRoute : '';

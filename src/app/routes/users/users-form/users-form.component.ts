@@ -1,4 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, Output, EventEmitter, Input } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { User } from 'src/app/domain/user';
 
 @Component({
   selector: 'users-form',
@@ -7,5 +9,19 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 
 export class UsersFormComponent {
+  @Input() user: User;
+  @Output() validatedEvent: EventEmitter<User> = new EventEmitter<User>();
+  
+  public filters = new FormGroup({
+    Name: new FormControl(),
+    Email: new FormControl(),
+    Document: new FormControl(),
+    
+  });
+
   constructor() { }
+
+  submit(): void {
+    this.validatedEvent.emit(this.user);
+  }
 }
