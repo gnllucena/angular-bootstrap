@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { PanelAnimation } from 'src/app/modules/animations/panel.animation';
+import { BehaviorSubject } from 'rxjs';
+import { User } from 'src/app/domain/user';
 
 @Component({
   selector: 'users-add',
@@ -8,7 +10,7 @@ import { PanelAnimation } from 'src/app/modules/animations/panel.animation';
   animations: [ PanelAnimation ],
 })
 export class UsersAddComponent {
-  @Input() visible: boolean;
+  public user = new BehaviorSubject<User>(null);
   
   constructor() { }
 }

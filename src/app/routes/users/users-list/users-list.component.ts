@@ -1,12 +1,12 @@
-import { Component, ViewEncapsulation, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { ListAnimation } from './../../../modules/animations/list.animation';
 import { User } from '../../../domain/user';
 import { Observable } from 'rxjs';
-import { UsersService } from './../users.service';
 import { Pagination } from 'src/app/domain/pagination';
 import { FormGroup } from '@angular/forms';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'users-list',
@@ -15,7 +15,7 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
   animations: [ ListAnimation ],
 })
 
-export class UsersListComponent implements OnInit {
+export class UsersListComponent {
   @Output() editEvent: EventEmitter<User> = new EventEmitter<User>();
   @Output() deleteEvent: EventEmitter<User> = new EventEmitter<User>();
 
@@ -23,12 +23,7 @@ export class UsersListComponent implements OnInit {
   public faEdit: IconDefinition = faEdit;
   public pagination: Observable<Pagination<User>>;
 
-  constructor(
-    public userService: UsersService) { }
-
-  ngOnInit(): void {
-    this.list(0, 10, null);
-  }
+  constructor(public httpService: HttpService<User>) { }
 
   edit(user: User): void {
     this.editEvent.emit(user);
@@ -38,7 +33,9 @@ export class UsersListComponent implements OnInit {
     this.deleteEvent.emit(user);
   }
 
-  list(offset: Number, limit: Number, filters: FormGroup): void {
-    this.pagination = this.userService.get(offset, limit, filters);
+  list(offset: Number, limit: Number, filters: FormGroup): Observable<Pagination<User>> {
+    this.pagination = this.httpService.list('users', offset, limit, filters);
+    
+    return this.pagination;
   }
 }

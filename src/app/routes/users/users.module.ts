@@ -14,24 +14,16 @@ import { UsersFormComponent } from './users-form/users-form.component';
 import { UsersFilterComponent } from './users-filter/users-filter.component';
 import { UsersEditComponent } from './users-edit/users-edit.component';
 import { UsersAddComponent } from './users-add/users-add.component';
-import { UsersService } from './users.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, PathLocationStrategy, LocationStrategy, Location } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpService } from 'src/app/services/http.service';
 
 const appRoutes: Routes = [
   { path: '', component: UsersPageComponent, canActivate: [AuthenticationGuard] },
+  { path: ':id', component: UsersPageComponent, canActivate: [AuthenticationGuard] },
+  { path: '/new', component: UsersPageComponent, canActivate: [AuthenticationGuard] }
 ];
-
-// users-add -> users.form
-// [{
-//   path: 'team/:id',
-//  component: Team,
-//   children: [{
-//     path: 'user/:name',
-//     component: User
-//   }]
-// }]
-
+  
 @NgModule({ 
   declarations: [
     UsersPageComponent,
@@ -51,7 +43,8 @@ const appRoutes: Routes = [
     RouterModule.forChild(appRoutes)
   ],
   providers: [
-    UsersService
+    HttpService,
+    Location, {provide: LocationStrategy, useClass: PathLocationStrategy }
   ]
 })
 export class UsersModule { }

@@ -1,6 +1,6 @@
-<div [@overlay-transition]="(visible | async) ? 'visible' : 'hidden'" class="overlay" (click)="close()"></div>
+<div [@overlay-transition]="(user | async) ? 'visible' : 'hidden'" class="overlay" (click)="close()"></div>
 
-<div #panel [@panel-transition]="(visible | async)  ? 'visible' : 'hidden'" class="panel">
+<div #panel [@panel-transition]="(user | async)  ? 'visible' : 'hidden'" class="panel">
   <div class="float-left">
     <h2 class="mb-4">Edit a user</h2>
   </div>
