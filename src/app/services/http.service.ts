@@ -21,7 +21,11 @@ export class HttpService<T> {
     return this.http.get<T>(environment.server + '/' + route + '/' + id);
   }
 
-  list(route: String, offset: Number, limit: Number, filters: FormGroup): Observable<Pagination<T>> {
+  list(route: String): Observable<T[]>{
+    return this.http.get<T[]>(environment.server + '/' + route);
+  }
+
+  paginate(route: String, offset: Number, limit: Number, filters: FormGroup): Observable<Pagination<T>> {
     let query = '';
 
     if (filters) {

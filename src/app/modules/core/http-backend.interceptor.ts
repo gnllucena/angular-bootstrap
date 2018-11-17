@@ -6,6 +6,7 @@ import { Jwt } from '../../domain/jwt';
 import { Card } from './../../domain/card';
 import { User } from '../../domain/user';
 import { Pagination } from 'src/app/domain/pagination';
+import { Country } from 'src/app/domain/country';
 
 @Injectable()
 export class HttpBackendInterceptor implements HttpInterceptor {
@@ -17,13 +18,13 @@ export class HttpBackendInterceptor implements HttpInterceptor {
         var data = new Date();
         data.setDate(data.getDate() + 1);
         
-        let jwt: Jwt = {
+        let jwt = new Jwt({
           Token: "eaea23424asdfaefwr52asdfasdf32s",
           Timeout: data,
           Username: req.body.Email.split("@")[0],
           Name: req.body.Email.split("@")[0],
           Email: req.body.Email
-        };
+        });
   
         return of(new HttpResponse({ status: 200, body: jwt }));
       }
@@ -31,14 +32,12 @@ export class HttpBackendInterceptor implements HttpInterceptor {
       if (req.url.includes('cards') && req.method === 'GET') {
         let cards: Card[] = [];
         
-        var card: Card = {
-          Title: 'Card title',
-          Description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content.',
-          Link: 'Dapibus ac facilisis in'
-        }
-
         for (let i = 0; i < 9; i++) {
-          cards.push(card);
+          cards.push(new Card({
+            Title: 'Card title',
+            Description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content.',
+            Link: 'Dapibus ac facilisis in'
+          }));
         }
   
         return of(new HttpResponse({ status: 200, body: cards }));
@@ -48,20 +47,18 @@ export class HttpBackendInterceptor implements HttpInterceptor {
         let users: User[] = [];
         
         var data = new Date();
-
-        var user: User = {
-          Id: 1,
-          Name: 'Gabriel Lucena',
-          Email: 'gnllucena@gmail.com',
-          Document: '023.437.673-27',
-          Birthdate:  new Date('1991-04-28T12:00:00'),
-          Country: 'Brasil',
-          Profile: 'Administrator',
-          Active: true
-        }
-
+        
         for (let i = 0; i < 10; i++) {
-          users.push(user);
+          users.push(new User({
+            Id: 1,
+            Name: 'Gabriel Lucena',
+            Email: 'gnllucena@gmail.com',
+            Document: '023.437.673-27',
+            Birthdate:  new Date('1991-04-28T12:00:00'),
+            Country: 'Brasil',
+            Profile: 'Administrator',
+            Active: true
+          }));
         }
 
         let pagination: Pagination<User> = {
@@ -87,6 +84,17 @@ export class HttpBackendInterceptor implements HttpInterceptor {
         }
 
         return of(new HttpResponse({ status: 200, body: user }));
+      }
+
+      if (req.url.includes('countries') && req.method === 'GET') {
+        let countries: Country[] = [];
+
+        countries.push(new Country({ Id: 1, Name: 'Brazil' }));
+        countries.push(new Country({ Id: 1, Name: 'United States of America' }));
+        countries.push(new Country({ Id: 1, Name: 'Thailand' }));
+        countries.push(new Country({ Id: 1, Name: 'Greece' }));
+
+        return of(new HttpResponse({ status: 200, body: countries }));
       }
 
       if (req.url.includes('error') && req.method === 'GET') {

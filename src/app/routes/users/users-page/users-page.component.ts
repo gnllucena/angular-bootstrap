@@ -9,6 +9,7 @@ import { ConfirmationModalComponent } from 'src/app/modules/modals/confirmation-
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { forkJoin } from 'rxjs';
+import { Country } from 'src/app/domain/country';
 
 @Component({
   selector: 'users-page',
@@ -25,20 +26,23 @@ export class UsersPageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private httpService: HttpService<User>) { }
+    private userService: HttpService<User>,
+    private countryService: HttpService<Country>,) { }
 
   ngOnInit(): void {
-    if (this.router.url.includes('new')) {
-      this.userAdd.user.next(new User());
-    } else if (this.router.url.includes('users/')) {
-      let get = this.httpService.get('users', 1);
-      let list = this.userList.list(0, 10, null);
+    let list = this.userList.list(0, 10, null);
+    let countries = this.countryService.list('countries');
 
-      forkJoin([get, list]).subscribe(results => {
-        this.userEdit.user.next(results[0]);
+    if (this.router.url.includes('new')) {  
+      forkJoin([list, countries]).subscribe(results => {
+        this.userAdd.user.next(new User());
       });
-    } else {
-      this.userList.list(0, 10, null);
+    } else if (this.router.url.includes('users/')) {
+      let get = this.userService.get('users', 1);
+      
+      forkJoin([list, countries, get]).subscribe(results => {
+        this.userEdit.user.next(results[2]);
+      });
     }
   }
 

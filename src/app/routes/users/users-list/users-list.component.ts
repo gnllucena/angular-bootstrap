@@ -23,7 +23,7 @@ export class UsersListComponent {
   public faEdit: IconDefinition = faEdit;
   public pagination: Observable<Pagination<User>>;
 
-  constructor(public httpService: HttpService<User>) { }
+  constructor(public userService: HttpService<User>) { }
 
   edit(user: User): void {
     this.editEvent.emit(user);
@@ -34,7 +34,7 @@ export class UsersListComponent {
   }
 
   list(offset: Number, limit: Number, filters: FormGroup): Observable<Pagination<User>> {
-    this.pagination = this.httpService.list('users', offset, limit, filters);
+    this.pagination = this.userService.paginate('users', offset, limit, filters);
     
     return this.pagination;
   }
