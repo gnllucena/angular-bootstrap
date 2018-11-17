@@ -10,13 +10,17 @@
           <label for="Email">Email</label>
           <input formControlName="Email" type="text" class="form-control" placeholder="User's email">
         </div>
-        <div class="form-group col-md-3">
-          <label for="Document">Document</label>
-          <input formControlName="Document" type="text" class="form-control" id="Document" placeholder="User's document">
-        </div>
       </div>
       
-      <button class="btn btn-primary" (click)="filter()">Search</button>
+      <div class="float-left">
+        <button class="btn btn" (click)="filter()">Search</button>
+      </div>
+
+      <div class="float-right">
+          <button class="btn btn-primary" (click)="add()">New</button>
+      </div>
+
+      <div class="clearfix"></div>
     </form>
   </div>
 </div>

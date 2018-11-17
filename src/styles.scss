@@ -5,6 +5,11 @@ body {
     overflow: hidden;
   }
 }
+.form-group {
+  .custom-radio.custom-control-inline {
+    padding-top: 4px;
+  } 
+}
 
 .popup {
   position: fixed;

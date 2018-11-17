@@ -14,7 +14,7 @@ import { User } from 'src/app/domain/user';
   animations: [ PanelAnimation, OverlayAnimation ]
 })
 export class UsersEditComponent {
-  @ViewChild('panel') panel: ElementRef; 
+  @ViewChild('panel') panel: ElementRef;
   
   public user = new BehaviorSubject<User>(null);
   public faTimes: IconDefinition = faTimes;
@@ -27,10 +27,10 @@ export class UsersEditComponent {
         if (user) {
           this.renderer.addClass(document.body, 'overflow');
           this.renderer.setProperty(this.panel.nativeElement, 'scrollTop', '0');
-          this.location.go(this.router.url + "/edit/");
+          this.location.go(this.router.url.split('/')[1] + '/' + user.Id);
         } else {
           this.renderer.removeClass(document.body, 'overflow'); 
-          this.location.go(this.router.url);
+          this.location.go(this.router.url.split('/')[1]);
         }
       });
   }

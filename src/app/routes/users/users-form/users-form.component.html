@@ -2,21 +2,64 @@
   <div class="col-lg-12">
     <form [formGroup]="filters" novalidate>
       <div class="form-row">
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-6">
           <label for="Name">Name</label>
           <input formControlName="Name" type="text" class="form-control" placeholder="User's name">
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-6">
           <label for="Email">Email</label>
           <input formControlName="Email" type="text" class="form-control" placeholder="User's email">
         </div>
+      </div>
+
+      <div class="form-row">
         <div class="form-group col-md-3">
           <label for="Document">Document</label>
-          <input formControlName="Document" type="text" class="form-control" id="Document" placeholder="User's document">
+          <input formControlName="Document" type="text" class="form-control" placeholder="User's document">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="Birthdate">Birthdate</label>
+          <input formControlName="Birthdate" type="text" class="form-control" placeholder="User's birthdate">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="Country">Country of birth</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="Name">User profile</label>
+          <div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+              <label class="custom-control-label" for="customRadioInline1">Administrator</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+              <label class="custom-control-label" for="customRadioInline2">Regular user</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="Name">Active</label>
+          
+          <div class="custom-control custom-checkbox my-1 mr-sm-2">
+            <input type="checkbox" class="custom-control-input" id="customControlInline">
+            <label class="custom-control-label" for="customControlInline">Check this if you want to activate user</label>
+          </div>
         </div>
       </div>
       
-      <button class="btn btn-primary" (click)="filter()">Search</button>
+      <button class="btn btn-primary" (click)="submit()">Save</button>
     </form>
   </div>
 </div>

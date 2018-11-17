@@ -3,7 +3,8 @@
 
   <users-filter 
     #userFilter 
-    (filterEvent)="filter($event)">
+    (filterEvent)="filter($event)"
+    (addEvent)="add()">
   </users-filter>
 
   <users-list 
@@ -12,16 +13,13 @@
     (deleteEvent)="delete($event)">
   </users-list>
 
-  <!-- <users-add 
-    #userAdd
-    [visible]="adding">
-  </users-add> -->
+  <users-add #userAdd>
+  </users-add>
 
-  <users-edit 
-    #userEdit>
+  <users-edit #userEdit>
   </users-edit>
 
-  <confirmation-modal 
+  <!-- <confirmation-modal 
     #userDelete>
-  </confirmation-modal>
+  </confirmation-modal> -->
 </div>

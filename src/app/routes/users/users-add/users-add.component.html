@@ -1,136 +1,17 @@
-<div class="overlay">
-  <div [@panel-transition]="visible" class="panel">
-    <div class="row mb-2 mb-2">
-      <div class="col-lg-12">
-        <div class="card">
-        <div class="card-body">
-          <h4 class="header-title mb-3">add:</h4>
-          
-          <users-form></users-form>
-        </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-2 mb-2">
-        <div class="col-lg-12">
-          <div class="card">
-          <div class="card-body">
-            <h4 class="header-title mb-3">Search for mine:</h4>
-            
-            <users-form></users-form>
-          </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mb-2 mb-2">
-          <div class="col-lg-12">
-            <div class="card">
-            <div class="card-body">
-              <h4 class="header-title mb-3">Search for mine:</h4>
-              
-              <users-form></users-form>
-            </div>
-            </div>
-          </div>
-        </div>
-        <div class="row mb-2 mb-2">
-            <div class="col-lg-12">
-              <div class="card">
-              <div class="card-body">
-                <h4 class="header-title mb-3">Search for mine:</h4>
-                
-                <users-form></users-form>
-              </div>
-              </div>
-            </div>
-          </div>
-          <div class="row mb-2 mb-2">
-              <div class="col-lg-12">
-                <div class="card">
-                <div class="card-body">
-                  <h4 class="header-title mb-3">Search for mine:</h4>
-                  
-                  <users-form></users-form>
-                </div>
-                </div>
-              </div>
-            </div>
-            <div class="row mb-2 mb-2">
-                <div class="col-lg-12">
-                  <div class="card">
-                  <div class="card-body">
-                    <h4 class="header-title mb-3">Search for mine:</h4>
-                    
-                    <users-form></users-form>
-                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row mb-2 mb-2">
-                  <div class="col-lg-12">
-                    <div class="card">
-                    <div class="card-body">
-                      <h4 class="header-title mb-3">Search for mine:</h4>
-                      
-                      <users-form></users-form>
-                    </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row mb-2 mb-2">
-                    <div class="col-lg-12">
-                      <div class="card">
-                      <div class="card-body">
-                        <h4 class="header-title mb-3">Search for mine:</h4>
-                        
-                        <users-form></users-form>
-                      </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row mb-2 mb-2">
-                      <div class="col-lg-12">
-                        <div class="card">
-                        <div class="card-body">
-                          <h4 class="header-title mb-3">Search for mine:</h4>
-                          
-                          <users-form></users-form>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row mb-2 mb-2">
-                        <div class="col-lg-12">
-                          <div class="card">
-                          <div class="card-body">
-                            <h4 class="header-title mb-3">Search for mine:</h4>
-                            
-                            <users-form></users-form>
-                          </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row mb-2 mb-2">
-                          <div class="col-lg-12">
-                            <div class="card">
-                            <div class="card-body">
-                              <h4 class="header-title mb-3">Search for mine:</h4>
-                              
-                              <users-form></users-form>
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row mb-2 mb-2">
-                            <div class="col-lg-12">
-                              <div class="card">
-                              <div class="card-body">
-                                <h4 class="header-title mb-3">Search for mine:</h4>
-                                
-                                <users-form></users-form>
-                              </div>
-                              </div>
-                            </div>
-                          </div>
+<div [@overlay-transition]="(user | async) ? 'visible' : 'hidden'" class="overlay" (click)="close()"></div>
+
+<div #panel [@panel-transition]="(user | async)  ? 'visible' : 'hidden'" class="panel">
+  <div class="float-left">
+    <h2 class="mb-4">Create a new user</h2>
   </div>
+
+  <div class="float-right">
+    <a (click)="close()" href="javascript:void(0);" class="panel-close">
+      <fa-icon [icon]="faTimes"></fa-icon>
+    </a>
+  </div>
+  
+  <div class="clearfix"></div>
+
+  <users-form></users-form>
 </div>

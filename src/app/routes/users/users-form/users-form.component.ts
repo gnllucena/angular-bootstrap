@@ -12,11 +12,16 @@ export class UsersFormComponent {
   @Input() user: User;
   @Output() validatedEvent: EventEmitter<User> = new EventEmitter<User>();
   
+  countries = ['USA', 'Germany', 'Italy', 'France'];
+
   public filters = new FormGroup({
     Name: new FormControl(),
     Email: new FormControl(),
     Document: new FormControl(),
-    
+    Birthdate: new FormControl(),
+    Country: new FormControl(),
+    Profile: new FormControl(),
+    Active: new FormControl()
   });
 
   constructor() { }

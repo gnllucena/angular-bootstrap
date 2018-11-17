@@ -31,7 +31,7 @@ export class HttpLoaderInterceptor implements HttpInterceptor {
   private finishing() {
     this.requests--;
 
-    if (this.requests >= 0) {
+    if (this.requests == 0) {
       this.loadingService.loading.next(false);
 
       this.requests = 0;

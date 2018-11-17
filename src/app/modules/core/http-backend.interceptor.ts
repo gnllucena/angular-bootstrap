@@ -50,10 +50,14 @@ export class HttpBackendInterceptor implements HttpInterceptor {
         var data = new Date();
 
         var user: User = {
+          Id: 1,
           Name: 'Gabriel Lucena',
           Email: 'gnllucena@gmail.com',
           Document: '023.437.673-27',
-          Birthdate:  new Date('1991-04-28T12:00:00')
+          Birthdate:  new Date('1991-04-28T12:00:00'),
+          Country: 'Brasil',
+          Profile: 'Administrator',
+          Active: true
         }
 
         for (let i = 0; i < 10; i++) {
@@ -72,10 +76,14 @@ export class HttpBackendInterceptor implements HttpInterceptor {
 
       if (req.url.includes('users/') && req.method === 'GET') {
         var user: User = {
+          Id: 1,
           Name: 'Gabriel Lucena',
           Email: 'gnllucena@gmail.com',
           Document: '023.437.673-27',
-          Birthdate:  new Date('1991-04-28T12:00:00')
+          Birthdate:  new Date('1991-04-28T12:00:00'),
+          Country: 'Brasil',
+          Profile: 'Administrator',
+          Active: true
         }
 
         return of(new HttpResponse({ status: 200, body: user }));

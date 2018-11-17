@@ -21,22 +21,22 @@ export class UsersPageComponent implements OnInit {
   @ViewChild('userList') userList: UsersListComponent;
   @ViewChild('userAdd') userAdd: UsersAddComponent;
   @ViewChild('userEdit') userEdit: UsersEditComponent;
-  @ViewChild('userDelete') userDelete: ConfirmationModalComponent;
+  // @ViewChild('userDelete') userDelete: ConfirmationModalComponent;
 
   constructor(
     private router: Router,
     private httpService: HttpService<User>) { }
 
   ngOnInit(): void {
-    if (this.router.url.includes('users/')) {
+    if (this.router.url.includes('new')) {
+      this.userAdd.user.next(new User());
+    } else if (this.router.url.includes('users/')) {
       let get = this.httpService.get('users', 1);
       let list = this.userList.list(0, 10, null);
 
       forkJoin([get, list]).subscribe(results => {
         this.userEdit.user.next(results[0]);
       });
-    } else if (this.router.url.includes('new')) {
-      this.userAdd.user.next(new User());
     } else {
       this.userList.list(0, 10, null);
     }
@@ -55,7 +55,7 @@ export class UsersPageComponent implements OnInit {
   }
 
   delete(user: User): void {
-    this.userDelete.visible.next(true);
+    // this.userDelete.visible.next(true);
   }
 
   applyAdd(user: User): void {

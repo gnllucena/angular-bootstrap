@@ -10,11 +10,11 @@ import { debounceTime } from 'rxjs/operators';
 
 export class UsersFilterComponent {
   @Output() filterEvent: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
+  @Output() addEvent: EventEmitter<void> = new EventEmitter<void>();
   
   public filters = new FormGroup({
     Name: new FormControl(),
-    Email: new FormControl(),
-    Document: new FormControl()
+    Email: new FormControl()
   });
 
   constructor() {
@@ -27,14 +27,13 @@ export class UsersFilterComponent {
       debounceTime(500)).subscribe(() => {
         this.filter();
       });
-
-    this.filters.controls.Document.valueChanges.pipe(
-      debounceTime(500)).subscribe(() => {
-        this.filter();
-      });
   }
 
   filter(): void {
     this.filterEvent.emit(this.filters);
+  }
+  
+  add(): void {
+    this.addEvent.emit();
   }
 }
