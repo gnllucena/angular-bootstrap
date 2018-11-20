@@ -7,6 +7,9 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { OverlayAnimation } from 'src/app/modules/animations/overlay.animation';
+import { Country } from 'src/app/domain/country';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DateValidation } from 'src/app/modules/validations/date.validation';
 
 @Component({
   selector: 'users-add',
@@ -16,16 +19,48 @@ import { OverlayAnimation } from 'src/app/modules/animations/overlay.animation';
 })
 export class UsersAddComponent {
   @ViewChild('panel') panel: ElementRef;
-
-  public user = new BehaviorSubject<User>(null);
+  
+  public visible = new BehaviorSubject<Boolean>(false);
+  public form: FormGroup;
+  public user: User = new User;
+  public countries: Country[] = [];
   public faTimes: IconDefinition = faTimes;
 
-  constructor(private renderer: Renderer2, 
-              private location: Location,
-              private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private renderer: Renderer2, 
+    private location: Location,
+    private router: Router) {
 
-      this.user.subscribe((user: User) => {
-        if (user) {
+      this.visible.subscribe((visible: Boolean) => {
+        if (visible) {
+          this.form = this.formBuilder.group({
+            Name: this.formBuilder.control({
+              value: this.user.Name,
+              disabled: false
+            }, [ Validators.required ]),
+            Email: this.formBuilder.control({
+              value: this.user.Email,
+              disabled: false,
+            }, [ Validators.required, Validators.email ]),
+            Document: this.formBuilder.control({
+              value: this.user.Document,
+              disabled: false
+            }, [ Validators.required, Validators.minLength(6) ]),
+            Birthdate: this.formBuilder.control({
+              value: this.user.Birthdate
+            }, [ Validators.required, Validators.pattern(DateValidation) ]),
+            Country: this.formBuilder.control({
+              value: this.user.Country
+            }, [ Validators.required ]),
+            Profile: this.formBuilder.control({
+              value: this.user.Profile
+            }, [ Validators.required ]),
+            Active: this.formBuilder.control({
+              value: this.user.Active
+            }),
+          });
+
           this.renderer.addClass(document.body, 'overflow');
           this.renderer.setProperty(this.panel.nativeElement, 'scrollTop', '0');
           this.location.go(this.router.url.split('/')[1] + '/new');
@@ -37,6 +72,6 @@ export class UsersAddComponent {
   }
 
   close() {
-    this.user.next(null);
+    this.visible.next(false);
   }
 }

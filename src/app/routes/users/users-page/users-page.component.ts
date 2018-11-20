@@ -24,6 +24,8 @@ export class UsersPageComponent implements OnInit {
   @ViewChild('userEdit') userEdit: UsersEditComponent;
   // @ViewChild('userDelete') userDelete: ConfirmationModalComponent;
 
+  public countries: Country[] = [];
+
   constructor(
     private router: Router,
     private userService: HttpService<User>,
@@ -35,13 +37,21 @@ export class UsersPageComponent implements OnInit {
 
     if (this.router.url.includes('new')) {  
       forkJoin([list, countries]).subscribe(results => {
-        this.userAdd.user.next(new User());
+        this.userAdd.countries = results[1];
+        this.userAdd.user = new User();
+        this.userAdd.visible.next(true);
       });
     } else if (this.router.url.includes('users/')) {
       let get = this.userService.get('users', 1);
       
       forkJoin([list, countries, get]).subscribe(results => {
-        this.userEdit.user.next(results[2]);
+        this.userEdit.countries = results[1];
+        this.userEdit.user = results[2];
+        this.userEdit.visible.next(true);
+      });
+    } else {
+      forkJoin([list, countries]).subscribe(results => {
+        this.countries = results[1];
       });
     }
   }
@@ -51,11 +61,13 @@ export class UsersPageComponent implements OnInit {
   }
 
   add(): void {
-    this.userAdd.user.next(new User());
+    this.userAdd.user = new User();
+    this.userAdd.visible.next(true);
   }
 
   edit(user: User): void {
-    this.userEdit.user.next(user);
+    this.userEdit.user = user;
+    this.userEdit.visible.next(true);
   }
 
   delete(user: User): void {
