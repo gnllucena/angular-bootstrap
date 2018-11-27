@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UIModule } from '../../modules/ui/.ui.module';
-import { DotService } from './dot.service';
+import { HttpService } from 'src/app/services/http.service';
 
 export const appRoutes: Routes = [
   {
@@ -16,7 +16,7 @@ export const appRoutes: Routes = [
     RouterModule.forChild(appRoutes)
   ],
   providers: [
-    DotService
+    HttpService
   ]
 })
 export class DotModule { }

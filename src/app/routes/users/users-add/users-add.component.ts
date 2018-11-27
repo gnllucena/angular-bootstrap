@@ -32,43 +32,47 @@ export class UsersAddComponent {
     private location: Location,
     private router: Router) {
 
-      this.visible.subscribe((visible: Boolean) => {
-        if (visible) {
-          this.form = this.formBuilder.group({
-            Name: this.formBuilder.control({
-              value: this.user.Name,
-              disabled: false
-            }, [ Validators.required ]),
-            Email: this.formBuilder.control({
-              value: this.user.Email,
-              disabled: false,
-            }, [ Validators.required, Validators.email ]),
-            Document: this.formBuilder.control({
-              value: this.user.Document,
-              disabled: false
-            }, [ Validators.required, Validators.minLength(6) ]),
-            Birthdate: this.formBuilder.control({
-              value: this.user.Birthdate
-            }, [ Validators.required, Validators.pattern(DateValidation) ]),
-            Country: this.formBuilder.control({
-              value: this.user.Country
-            }, [ Validators.required ]),
-            Profile: this.formBuilder.control({
-              value: this.user.Profile
-            }, [ Validators.required ]),
-            Active: this.formBuilder.control({
-              value: this.user.Active
-            }),
-          });
+    this.visible.subscribe((visible: Boolean) => {
+      if (visible) {
+        this.form = this.formBuilder.group({
+          Name: this.formBuilder.control({
+            value: '',
+            disabled: false
+          }, [ Validators.required ]),
+          Email: this.formBuilder.control({
+            value: '',
+            disabled: false,
+          }, [ Validators.required, Validators.email ]),
+          Document: this.formBuilder.control({
+            value: '',
+            disabled: false
+          }, [ Validators.required, Validators.minLength(6) ]),
+          Birthdate: this.formBuilder.control({
+            value: '',
+            disabled: false
+          }, [ Validators.required, Validators.pattern(DateValidation) ]),
+          Country: this.formBuilder.control({
+            value: '',
+            disabled: false
+          }, [ Validators.required ]),
+          Profile: this.formBuilder.control({
+            value: 'Regular',
+            disabled: false
+          }, [ Validators.required ]),
+          Active: this.formBuilder.control({
+            value: true,
+            disabled: false
+          }),
+        });
 
-          this.renderer.addClass(document.body, 'overflow');
-          this.renderer.setProperty(this.panel.nativeElement, 'scrollTop', '0');
-          this.location.go(this.router.url.split('/')[1] + '/new');
-        } else {
-          this.renderer.removeClass(document.body, 'overflow'); 
-          this.location.go(this.router.url.split('/')[1]);
-        }
-      });
+        this.renderer.addClass(document.body, 'overflow');
+        this.renderer.setProperty(this.panel.nativeElement, 'scrollTop', '0');
+        this.location.go(this.router.url.split('/')[1] + '/new');
+      } else {
+        this.renderer.removeClass(document.body, 'overflow'); 
+        this.location.go(this.router.url.split('/')[1]);
+      }
+    });
   }
 
   close() {

@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { User } from 'src/app/domain/user';
 import { Country } from 'src/app/domain/country';
 
 @Component({
@@ -11,9 +10,10 @@ import { Country } from 'src/app/domain/country';
 
 export class UsersFormComponent {
   @Input() form: FormGroup;
-  @Input() countries: Country[];
+  @Input() countries: Country[] = [];
+  @Input() parent: String;
   @Output() validatedEvent: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
-  
+ 
   constructor() { }
 
   submit(): void {

@@ -1,9 +1,9 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../../../services/authentication.service';
-import { DotService } from './../../dot.service';
 import { Card } from './../../../../domain/card';
 import { ListAnimation } from './../../../../modules/animations/list.animation';
 import { Observable } from 'rxjs';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'dot-myself-page',
@@ -17,9 +17,9 @@ export class DotMyselfPageComponent implements OnInit {
   
   constructor(
     public authenticationService: AuthenticationService,
-    public dotService: DotService) { }
+    public dotService: HttpService<Card>) { }
 
   ngOnInit(): void {
-    this.cards = this.dotService.get();
+    this.cards = this.dotService.list('cards');
   }
 }

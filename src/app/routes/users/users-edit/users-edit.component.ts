@@ -47,19 +47,23 @@ export class UsersEditComponent {
             disabled: true
           }, [ Validators.required, Validators.minLength(6) ]),
           Birthdate: this.formBuilder.control({
-            value: this.user.Birthdate
+            value: this.user.Birthdate.toLocaleDateString(),
+            disabled: false
           }, [ Validators.required, Validators.pattern(DateValidation) ]),
           Country: this.formBuilder.control({
-            value: this.user.Country
+            value: this.user.Country,
+            disabled: false
           }, [ Validators.required ]),
           Profile: this.formBuilder.control({
-            value: this.user.Profile
+            value: this.user.Profile,
+            disabled: false
           }, [ Validators.required ]),
           Active: this.formBuilder.control({
-            value: this.user.Active
+            value: this.user.Active,
+            disabled: false
           }),
         });
-
+        
         this.renderer.addClass(document.body, 'overflow');
         this.renderer.setProperty(this.panel.nativeElement, 'scrollTop', '0');
         this.location.go(this.router.url.split('/')[1] + '/' + this.user.Id);

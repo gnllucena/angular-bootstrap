@@ -24,12 +24,9 @@
 
         <div class="form-group col-md-6">
           <label for="Country">Country of birth</label>
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+          <select formControlName="Country" class="form-control custom-select">
+            <option value="">Select country of birth</option>
+            <option *ngFor="let country of countries" [ngValue]="country.Name">{{ country.Name }}</option>
           </select>
         </div>
       </div>
@@ -39,12 +36,12 @@
           <label for="Name">User profile</label>
           <div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-              <label class="custom-control-label" for="customRadioInline1">Administrator</label>
+              <input formControlName="Profile" type="radio" value="Administrator" id="AdministratorUser{{parent}}" class="custom-control-input">
+              <label class="custom-control-label" for="AdministratorUser{{parent}}">Administrator</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-              <label class="custom-control-label" for="customRadioInline2">Regular user</label>
+              <input formControlName="Profile" type="radio" value="Regular" id="RegularUser{{parent}}" class="custom-control-input">
+              <label class="custom-control-label" for="RegularUser{{parent}}">Regular user</label>
             </div>
           </div>
         </div>
@@ -53,8 +50,8 @@
           <label for="Name">Active</label>
           
           <div class="custom-control custom-checkbox my-1 mr-sm-2">
-            <input type="checkbox" class="custom-control-input" id="customControlInline">
-            <label class="custom-control-label" for="customControlInline">Check this if you want to activate user</label>
+            <input formControlName="Active" type="checkbox" id="ActiveUser{{parent}}" class="custom-control-input">
+            <label class="custom-control-label" for="ActiveUser{{parent}}">Check this if you want to activate user</label>
           </div>
         </div>
       </div>

@@ -48,16 +48,16 @@ export class HttpBackendInterceptor implements HttpInterceptor {
         
         var data = new Date();
         
-        users.push(new User({Id: 1, Name: 'Pikachu', Email: 'pikachu@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Brasil', Profile: 'Administrator', Active: true }));
-        users.push(new User({Id: 2, Name: 'Charmander', Email: 'charmander@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Brasil', Profile: 'Administrator', Active: true }));
-        users.push(new User({Id: 3, Name: 'Squirtle', Email: 'squirtle@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Brasil', Profile: 'Administrator', Active: true }));
-        users.push(new User({Id: 4, Name: 'Bulbasaur', Email: 'bulbasaur@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Brasil', Profile: 'Administrator', Active: true }));
-        users.push(new User({Id: 5, Name: 'Mew', Email: 'mew@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Brasil', Profile: 'Administrator', Active: true }));
-        users.push(new User({Id: 6, Name: 'Chansey', Email: 'chansey@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Brasil', Profile: 'Administrator', Active: true }));
-        users.push(new User({Id: 7, Name: 'Blaziken', Email: 'blaziken@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Brasil', Profile: 'Administrator', Active: true }));
-        users.push(new User({Id: 8, Name: 'Feraligart', Email: 'feraligart@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Brasil', Profile: 'Administrator', Active: true }));
-        users.push(new User({Id: 9, Name: 'Chikorita', Email: 'chikorita@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Brasil', Profile: 'Administrator', Active: true }));
-        users.push(new User({Id: 10, Name: 'Torchic', Email: 'torchic@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Brasil', Profile: 'Administrator', Active: true }));
+        users.push(new User({ Id: 1, Name: 'Pikachu', Email: 'pikachu@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
+        users.push(new User({ Id: 2, Name: 'Charmander', Email: 'charmander@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Regular', Active: false }));
+        users.push(new User({ Id: 3, Name: 'Squirtle', Email: 'squirtle@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
+        users.push(new User({ Id: 4, Name: 'Bulbasaur', Email: 'bulbasaur@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
+        users.push(new User({ Id: 5, Name: 'Mew', Email: 'mew@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: false }));
+        users.push(new User({ Id: 6, Name: 'Chansey', Email: 'chansey@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
+        users.push(new User({ Id: 7, Name: 'Blaziken', Email: 'blaziken@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Hoenn', Profile: 'Regular', Active: true }));
+        users.push(new User({ Id: 8, Name: 'Feraligart', Email: 'feraligart@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Johto', Profile: 'Administrator', Active: true }));
+        users.push(new User({ Id: 9, Name: 'Chikorita', Email: 'chikorita@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Johto', Profile: 'Regular', Active: false }));
+        users.push(new User({ Id: 10, Name: 'Torchic', Email: 'torchic@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Hoenn', Profile: 'Regular', Active: true }));
 
         let pagination: Pagination<User> = {
           Items: users,
@@ -70,16 +70,16 @@ export class HttpBackendInterceptor implements HttpInterceptor {
       }
 
       if (req.url.includes('users/') && req.method === 'GET') {
-        var user: User = {
-          Id: 1,
-          Name: 'Gabriel Lucena',
-          Email: 'gnllucena@gmail.com',
-          Document: '023.437.673-27',
+        var user = new User({
+          Id: 666,
+          Name: 'Mewtwo',
+          Email: 'mewtwo@gmail.com',
+          Document: '02343767327',
           Birthdate:  new Date('1991-04-28T12:00:00'),
-          Country: 'Brasil',
+          Country: 'Kanto',
           Profile: 'Administrator',
           Active: true
-        }
+        })
 
         return of(new HttpResponse({ status: 200, body: user }));
       }
@@ -87,10 +87,13 @@ export class HttpBackendInterceptor implements HttpInterceptor {
       if (req.url.includes('countries') && req.method === 'GET') {
         let countries: Country[] = [];
 
-        countries.push(new Country({ Id: 1, Name: 'Brazil' }));
-        countries.push(new Country({ Id: 1, Name: 'United States of America' }));
-        countries.push(new Country({ Id: 1, Name: 'Thailand' }));
-        countries.push(new Country({ Id: 1, Name: 'Greece' }));
+        countries.push(new Country({ Id: 1, Name: 'Kanto' }));
+        countries.push(new Country({ Id: 2, Name: 'Johto' }));
+        countries.push(new Country({ Id: 3, Name: 'Hoenn' }));
+        countries.push(new Country({ Id: 4, Name: 'Sinnoh' }));
+        countries.push(new Country({ Id: 5, Name: 'Unova' }));
+        countries.push(new Country({ Id: 6, Name: 'Kalos' }));
+        countries.push(new Country({ Id: 7, Name: 'Alola' }));
 
         return of(new HttpResponse({ status: 200, body: countries }));
       }
