@@ -35,7 +35,7 @@ export class UsersListComponent {
     this.deleteEvent.emit(user);
   }
 
-  list(offset: Number, limit: Number, filters: FormGroup): Observable<Pagination<User>> {
+  list(offset: number, limit: number, filters: FormGroup): Observable<Pagination<User>> {
     this.pagination = this.userService.paginate('users', offset, limit, filters);
     
     return this.pagination;

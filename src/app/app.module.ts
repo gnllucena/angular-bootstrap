@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { CoreModule } from './modules/core/.core.module';
 import { UIModule } from './modules/ui/.ui.module';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AuthenticationService } from './services/authentication.service';
 import { LoadingService } from './services/loading.service';
@@ -46,7 +47,8 @@ export const appRoutes: Routes = [
     HttpClientModule,
     UIModule,
     CoreModule.forRoot(),
-    RouterModule.forRoot(appRoutes)    
+    RouterModule.forRoot(appRoutes),
+    ToastrModule.forRoot(),
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },

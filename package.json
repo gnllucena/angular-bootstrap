@@ -27,6 +27,7 @@
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.4",
     "ngx-mask": "^7.0.1",
+    "ngx-toastr": "^9.1.1",
     "rxjs": "~6.2.0",
     "web-animations-js": "^2.3.1",
     "zone.js": "~0.8.26"

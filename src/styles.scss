@@ -1,10 +1,12 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import '~ngx-toastr/toastr.css';
 
 body {
   &.overflow {
     overflow: hidden;
   }
 }
+
 .form-group {
   .custom-radio.custom-control-inline {
     padding-top: 4px;

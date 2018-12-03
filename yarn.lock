@@ -4042,6 +4042,13 @@ ngx-mask@^7.0.1:
   dependencies:
     tslib "^1.9.0"
 
+ngx-toastr@^9.1.1:
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/ngx-toastr/-/ngx-toastr-9.1.1.tgz#c7ec0284d13951422ccf47439a387372ddccc768"
+  integrity sha512-v43BmIXPmwMRx9Uv0ru2UaPQLA14gTsqWgXrO1DKC8RXnBGGoQEE48cVCaDX1GhaGM5GSzVO2s0o+nb688zsFw==
+  dependencies:
+    tslib "^1.9.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"

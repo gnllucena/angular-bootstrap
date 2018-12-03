@@ -9,6 +9,8 @@ import { User } from 'src/app/domain/user';
 import { Country } from 'src/app/domain/country';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { DateValidation } from 'src/app/modules/validations/date.validation';
+import { HttpService } from 'src/app/services/http.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'users-edit',
@@ -30,6 +32,8 @@ export class UsersEditComponent {
     private renderer: Renderer2,
     private location: Location,
     private router: Router,
+    private httpService: HttpService<User>,
+    private toastService: ToastService,
     @Inject(LOCALE_ID) private locale: string) {
 
     this.visible.subscribe((visible: Boolean) => {
@@ -73,6 +77,15 @@ export class UsersEditComponent {
         this.location.go(this.router.url.split('/')[1]);
       }
     });
+  }
+
+  submit() {
+    this.httpService.put('users', this.user.Id, this.form)
+      .subscribe(() => {
+        this.toastService.success('the user was successfully edited')
+        
+        this.close();
+      });
   }
 
   close() {

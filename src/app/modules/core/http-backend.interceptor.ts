@@ -43,6 +43,18 @@ export class HttpBackendInterceptor implements HttpInterceptor {
         return of(new HttpResponse({ status: 200, body: cards }));
       }
 
+      if (req.url.includes('users') && req.method === 'POST') {
+        return of(new HttpResponse({ status: 201, body: 99999  }));
+      }
+
+      if (req.url.includes('users') && req.method === 'PUT') {
+        return of(new HttpResponse({ status: 204 }));
+      }
+
+      if (req.url.includes('users') && req.method === 'DELETE') {
+        return of(new HttpResponse({ status: 204 }));
+      }
+
       if (req.url.includes('users?') && req.method === 'GET') {
         let users: User[] = [];
         

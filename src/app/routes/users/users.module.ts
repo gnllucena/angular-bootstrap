@@ -18,6 +18,7 @@ import { UsersAddComponent } from './users-add/users-add.component';
 import { CommonModule, PathLocationStrategy, LocationStrategy, Location } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpService } from 'src/app/services/http.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 const appRoutes: Routes = [
   { path: '', component: UsersPageComponent, canActivate: [AuthenticationGuard] },
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     HttpService,
+    ToastService,
     Location, {provide: LocationStrategy, useClass: PathLocationStrategy }
   ]
 })

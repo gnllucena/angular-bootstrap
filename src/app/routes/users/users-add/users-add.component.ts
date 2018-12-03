@@ -11,6 +11,8 @@ import { Country } from 'src/app/domain/country';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateValidation } from 'src/app/modules/validations/date.validation';
 import { CpfValidation } from 'src/app/modules/validations/cpf.validation';
+import { HttpService } from 'src/app/services/http.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'users-add',
@@ -31,7 +33,9 @@ export class UsersAddComponent {
     private formBuilder: FormBuilder,
     private renderer: Renderer2, 
     private location: Location,
-    private router: Router) {
+    private router: Router,
+    private httpService: HttpService<User>,
+    private toastService: ToastService) {
 
     this.visible.subscribe((visible: Boolean) => {
       if (visible) {
@@ -74,6 +78,15 @@ export class UsersAddComponent {
         this.location.go(this.router.url.split('/')[1]);
       }
     });
+  }
+
+  submit() {
+    this.httpService.post('users', this.form)
+      .subscribe(() => {
+        this.toastService.success('the user was successfully added');
+        
+        this.close();
+      });
   }
 
   close() {

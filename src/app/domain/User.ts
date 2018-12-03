@@ -3,12 +3,12 @@ export class User {
     Object.assign(this, init);
   }
 
-  Id: Number;
-  Name: String;
-  Email: String;
-  Document: String;
+  Id: number;
+  Name: string;
+  Email: string;
+  Document: string;
   Birthdate: Date;
-  Country: String;
-  Profile: String;
-  Active: Boolean;
+  Country: string;
+  Profile: string;
+  Active: boolean;
 }

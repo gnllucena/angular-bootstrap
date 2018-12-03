@@ -11,21 +11,27 @@ import { FormGroup } from '@angular/forms';
 export class HttpService<T> {
   constructor(private http: HttpClient) { }
   
-  post(): void { }
+  post(route: string, form: FormGroup): Observable<T> { 
+    return this.http.post<T>(environment.server + '/' + route, form.getRawValue());
+  }
 
-  put(): void { }
+  put(route: string, id: number, form: FormGroup): Observable<T> { 
+    return this.http.put<T>(environment.server + '/' + route + '/' + id, form.getRawValue());
+  }
 
-  delete(): void { }
+  delete(route: string, id: number): Observable<T> { 
+    return this.http.delete<T>(environment.server + '/' + route + '/' + id);
+  }
 
-  get(route: String, id: Number): Observable<T> {
+  get(route: string, id: number): Observable<T> {
     return this.http.get<T>(environment.server + '/' + route + '/' + id);
   }
 
-  list(route: String): Observable<T[]>{
+  list(route: string): Observable<T[]>{
     return this.http.get<T[]>(environment.server + '/' + route);
   }
 
-  paginate(route: String, offset: Number, limit: Number, filters: FormGroup): Observable<Pagination<T>> {
+  paginate(route: string, offset: number, limit: number, filters: FormGroup): Observable<Pagination<T>> {
     let query = '';
 
     if (filters) {

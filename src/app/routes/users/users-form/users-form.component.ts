@@ -25,6 +25,8 @@ export class UsersFormComponent {
       return;
     }
 
+    this.submitted = false;
+
     this.validatedEvent.emit(this.form);
   }
 }
