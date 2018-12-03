@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Country } from 'src/app/domain/country';
 
 @Component({
@@ -14,9 +14,17 @@ export class UsersFormComponent {
   @Input() parent: String;
   @Output() validatedEvent: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
  
+  public submitted = false;
+
   constructor() { }
 
   submit(): void {
+    this.submitted = true;
+
+    if (!this.form.valid) {
+      return;
+    }
+
     this.validatedEvent.emit(this.form);
   }
 }

@@ -43,7 +43,7 @@ export class UsersAddComponent {
           Email: this.formBuilder.control({
             value: '',
             disabled: false,
-          }, [ Validators.required, Validators.email ]),
+          }, [ Validators.required, Validators.email, Validators.maxLength(30) ]),
           Document: this.formBuilder.control({
             value: '',
             disabled: false

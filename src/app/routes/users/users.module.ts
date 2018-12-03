@@ -1,4 +1,5 @@
 
+import { NgxMaskModule } from 'ngx-mask'
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(appRoutes)
+    RouterModule.forChild(appRoutes),
+    NgxMaskModule.forRoot()
   ],
   providers: [
     HttpService,

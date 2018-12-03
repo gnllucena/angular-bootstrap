@@ -7,13 +7,13 @@ function validation(): ValidatorFn {
     const cpf = control.value;
 
     if (!cpf) {
-      return { CpfInvalid: { value: cpf } };
+      return null;
     }
 
     const value = cpf.replace(/[^0-9]/g, '');
 
     if (value.length !== 11) {
-      return { CpfInvalid: { value: cpf } };
+      return { invalid: { value: cpf } };
     }
 
     if ((value === '00000000000') ||
@@ -27,7 +27,7 @@ function validation(): ValidatorFn {
         (value === '88888888888') ||
         (value === '99999999999')) {
 
-      return { CpfInvalid: { value: cpf } };
+      return { invalid: { value: cpf } };
     }
 
     let j: number = 10;
@@ -81,7 +81,7 @@ function validation(): ValidatorFn {
     auxiliar = auxiliar + digito2;
 
     if (cpf !== auxiliar) {
-      return { CpfInvalid: { value: cpf } };
+      return { invalid: { value: cpf } };
     }
 
     return null;

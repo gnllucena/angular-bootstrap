@@ -38,11 +38,11 @@ export class UsersEditComponent {
           Name: this.formBuilder.control({
             value: this.user.Name,
             disabled: false
-          }, [ Validators.required ]),
+          }, [ Validators.required, Validators.maxLength(30) ]),
           Email: this.formBuilder.control({
             value: this.user.Email,
             disabled: false,
-          }, [ Validators.required, Validators.email ]),
+          }, [ Validators.required, Validators.email, Validators.maxLength(30) ]),
           Document: this.formBuilder.control({
             value: this.user.Document,
             disabled: true

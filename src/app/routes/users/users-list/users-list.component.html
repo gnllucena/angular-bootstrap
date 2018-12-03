@@ -18,7 +18,7 @@
           <div class="col-md-3">
             <div class="form-group">
               <label class="small">Document</label>
-              <label>{{ user.Document }}</label>
+              <label>{{ user.Document | mask: '000.000.000-00' }}</label>
             </div>
           </div>
           <div class="col-2 col-md-1">

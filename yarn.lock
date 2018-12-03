@@ -4035,6 +4035,13 @@ neo-async@^2.5.0:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.2.tgz#489105ce7bc54e709d736b195f82135048c50fcc"
 
+ngx-mask@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-mask/-/ngx-mask-7.0.1.tgz#51160232be3f3360cab66f7231ef06dec8d1b9b5"
+  integrity sha512-kOt1zU16lgJvd0yBYGUco67aNtn2tqCAHSQKq3D/i9pW+E14RhIV1Txe10fVZqG51Plw6G4zbpqXjrqgFWSUpQ==
+  dependencies:
+    tslib "^1.9.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
