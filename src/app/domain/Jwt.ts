@@ -3,9 +3,9 @@ export class Jwt {
     Object.assign(this, init);
   }
 
-  Token: String;
+  Token: string;
   Timeout: Date;
-  Username: String;
-  Name: String;
-  Email: String;
+  Username: string;
+  Name: string;
+  Email: string;
 }

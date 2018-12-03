@@ -3,7 +3,7 @@ export class Card {
     Object.assign(this, init);
   }
 
-  Title: String;
-  Description: String;
-  Link: String;
+  Title: string;
+  Description: string;
+  Link: string;
 }

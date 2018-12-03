@@ -44,7 +44,9 @@ export class UsersPageComponent implements OnInit {
         this.countries = results[1];
       });
     } else if (this.router.url.includes('users/')) {
-      let get = this.userService.get('users', 1);
+      let id = Number(this.router.url.split('users/')[1]);
+
+      let get = this.userService.get('users', id);
       
       forkJoin([list, countries, get]).subscribe(results => {
         this.userEdit.user = results[2];

@@ -10,6 +10,7 @@ import { OverlayAnimation } from 'src/app/modules/animations/overlay.animation';
 import { Country } from 'src/app/domain/country';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateValidation } from 'src/app/modules/validations/date.validation';
+import { CpfValidation } from 'src/app/modules/validations/cpf.validation';
 
 @Component({
   selector: 'users-add',
@@ -38,7 +39,7 @@ export class UsersAddComponent {
           Name: this.formBuilder.control({
             value: '',
             disabled: false
-          }, [ Validators.required ]),
+          }, [ Validators.required, Validators.maxLength(30) ]),
           Email: this.formBuilder.control({
             value: '',
             disabled: false,
@@ -46,11 +47,11 @@ export class UsersAddComponent {
           Document: this.formBuilder.control({
             value: '',
             disabled: false
-          }, [ Validators.required, Validators.minLength(6) ]),
+          }, [ Validators.required, CpfValidation ]),
           Birthdate: this.formBuilder.control({
             value: '',
             disabled: false
-          }, [ Validators.required, Validators.pattern(DateValidation) ]),
+          }, [ Validators.required, DateValidation ]),
           Country: this.formBuilder.control({
             value: '',
             disabled: false

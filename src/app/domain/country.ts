@@ -3,7 +3,7 @@ export class Country {
     Object.assign(this, init);
   }
 
-  Id: Number;
-  Name: String;    
+  Id: number;
+  Name: string;    
 }
   

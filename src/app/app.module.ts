@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -49,6 +49,7 @@ export const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)    
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
     AuthenticationService,
     LoadingService
   ],

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Component, ViewEncapsulation, Output, EventEmitter, Inject, LOCALE_ID } from '@angular/core';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { ListAnimation } from './../../../modules/animations/list.animation';
 import { User } from '../../../domain/user';
@@ -23,7 +23,9 @@ export class UsersListComponent {
   public faEdit: IconDefinition = faEdit;
   public pagination: Observable<Pagination<User>>;
 
-  constructor(public userService: HttpService<User>) { }
+  constructor(
+    public userService: HttpService<User>,
+    @Inject(LOCALE_ID) public locale: string) { }
 
   edit(user: User): void {
     this.editEvent.emit(user);

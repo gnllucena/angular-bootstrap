@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Renderer2, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Renderer2, ViewChild, ElementRef, LOCALE_ID, Inject } from '@angular/core';
 import { faTimes, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { PanelAnimation } from 'src/app/modules/animations/panel.animation';
 import { OverlayAnimation } from 'src/app/modules/animations/overlay.animation';
@@ -18,7 +18,7 @@ import { DateValidation } from 'src/app/modules/validations/date.validation';
 })
 export class UsersEditComponent {
   @ViewChild('panel') panel: ElementRef;
-  
+
   public visible = new BehaviorSubject<Boolean>(false);
   public form: FormGroup;
   public user: User = new User;
@@ -29,7 +29,8 @@ export class UsersEditComponent {
     private formBuilder: FormBuilder,
     private renderer: Renderer2,
     private location: Location,
-    private router: Router) {
+    private router: Router,
+    @Inject(LOCALE_ID) private locale: string) {
 
     this.visible.subscribe((visible: Boolean) => {
       if (visible) {
@@ -45,11 +46,11 @@ export class UsersEditComponent {
           Document: this.formBuilder.control({
             value: this.user.Document,
             disabled: true
-          }, [ Validators.required, Validators.minLength(6) ]),
+          }),
           Birthdate: this.formBuilder.control({
-            value: this.user.Birthdate.toLocaleDateString(),
+            value: this.user.Birthdate.toLocaleDateString(locale),
             disabled: false
-          }, [ Validators.required, Validators.pattern(DateValidation) ]),
+          }, [ Validators.required, DateValidation ]),
           Country: this.formBuilder.control({
             value: this.user.Country,
             disabled: false
@@ -63,12 +64,12 @@ export class UsersEditComponent {
             disabled: false
           }),
         });
-        
+
         this.renderer.addClass(document.body, 'overflow');
         this.renderer.setProperty(this.panel.nativeElement, 'scrollTop', '0');
         this.location.go(this.router.url.split('/')[1] + '/' + this.user.Id);
       } else {
-        this.renderer.removeClass(document.body, 'overflow'); 
+        this.renderer.removeClass(document.body, 'overflow');
         this.location.go(this.router.url.split('/')[1]);
       }
     });
