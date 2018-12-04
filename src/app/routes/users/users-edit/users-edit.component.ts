@@ -11,6 +11,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { DateValidation } from 'src/app/modules/validations/date.validation';
 import { HttpService } from 'src/app/services/http.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { UsersFormComponent } from '../users-form/users-form.component';
 
 @Component({
   selector: 'users-edit',
@@ -20,6 +21,7 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class UsersEditComponent {
   @ViewChild('panel') panel: ElementRef;
+  @ViewChild('userForm') userForm: UsersFormComponent;
 
   public visible = new BehaviorSubject<Boolean>(false);
   public form: FormGroup;
@@ -89,6 +91,7 @@ export class UsersEditComponent {
   }
 
   close() {
+    this.userForm.submitted = false;
     this.visible.next(false);
   }
 }

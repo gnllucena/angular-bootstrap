@@ -13,6 +13,7 @@ import { DateValidation } from 'src/app/modules/validations/date.validation';
 import { CpfValidation } from 'src/app/modules/validations/cpf.validation';
 import { HttpService } from 'src/app/services/http.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { UsersFormComponent } from '../users-form/users-form.component';
 
 @Component({
   selector: 'users-add',
@@ -22,6 +23,7 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class UsersAddComponent {
   @ViewChild('panel') panel: ElementRef;
+  @ViewChild('userForm') userForm: UsersFormComponent;
   
   public visible = new BehaviorSubject<Boolean>(false);
   public form: FormGroup;
@@ -90,6 +92,7 @@ export class UsersAddComponent {
   }
 
   close() {
+    this.userForm.submitted = false;
     this.visible.next(false);
   }
 }

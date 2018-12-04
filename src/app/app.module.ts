@@ -14,6 +14,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { LoadingService } from './services/loading.service';
 import { NotFoundComponent } from './modules/ui/not-found.component';
 import { HomePageComponent } from './routes/home/home-page.component';
+import { ToastComponent } from './modules/ui/toast.component';
 
 export const appRoutes: Routes = [
   {
@@ -39,7 +40,8 @@ export const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,12 @@ export const appRoutes: Routes = [
     UIModule,
     CoreModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      toastComponent: ToastComponent
+    }),
+  ],
+  entryComponents: [
+    ToastComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },

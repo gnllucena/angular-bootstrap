@@ -4,19 +4,19 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="Name">Name</label>
-          <input formControlName="Name" type="text" class="form-control" placeholder="User's name">
+          <input formControlName="Name" [ngClass]="{'is-invalid' : submitted && form.controls.Name.errors}" type="text" class="form-control" placeholder="User's name">
           <ng-container *ngIf="submitted && form.controls.Name.errors">
-            <small *ngIf="form.controls.Name.errors.required" class="d-inline-block">Name is required</small>
-            <small *ngIf="form.controls.Name.errors.maxlength" class="d-inline-block">Name must not have more than 30 caractheres</small>
+            <small *ngIf="form.controls.Name.errors.required" class="d-inline-block text-danger">Name is required</small>
+            <small *ngIf="form.controls.Name.errors.maxlength" class="d-inline-block text-danger">Name must not have more than 30 caractheres</small>
           </ng-container>
         </div>
         <div class="form-group col-md-6">
           <label for="Email">Email</label>
-          <input formControlName="Email" type="text" class="form-control" placeholder="User's email">
+          <input formControlName="Email" [ngClass]="{'is-invalid' : submitted && form.controls.Email.errors}" type="text" class="form-control" placeholder="User's email">
           <ng-container *ngIf="submitted && form.controls.Email.errors">
-            <small *ngIf="form.controls.Email.errors.required" class="d-inline-block">Email is required</small>
-            <small *ngIf="form.controls.Email.errors.email" class="d-inline-block">Email must be a valid email address</small>
-            <small *ngIf="form.controls.Email.errors.maxlength" class="d-inline-block">Email must not have more than 30 caractheres</small>
+            <small *ngIf="form.controls.Email.errors.required" class="d-inline-block text-danger">Email is required</small>
+            <small *ngIf="form.controls.Email.errors.email" class="d-inline-block text-danger">Email must be a valid email address</small>
+            <small *ngIf="form.controls.Email.errors.maxlength" class="d-inline-block text-danger">Email must not have more than 30 caractheres</small>
           </ng-container>
         </div>
       </div>
@@ -24,18 +24,18 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="Document">Document</label>
-          <input formControlName="Document" mask="000.000.000-00" type="text" class="form-control" placeholder="User's document">
+          <input formControlName="Document" mask="000.000.000-00" [ngClass]="{'is-invalid' : submitted && form.controls.Document.errors}" type="text" class="form-control" placeholder="User's document">
           <ng-container *ngIf="submitted && form.controls.Document.errors">
-            <small *ngIf="form.controls.Document.errors.required" class="d-inline-block">Document is required</small>
-            <small *ngIf="form.controls.Document.errors.invalid" class="d-inline-block">Document format is invalid</small>
+            <small *ngIf="form.controls.Document.errors.required" class="d-inline-block text-danger">Document is required</small>
+            <small *ngIf="form.controls.Document.errors.invalid" class="d-inline-block text-danger">Document format is invalid</small>
           </ng-container>
         </div>
         <div class="form-group col-md-6">
           <label for="Birthdate">Birthdate</label>
-          <input formControlName="Birthdate" mask="00/00/0000" [dropSpecialCharacters]="false" type="text" class="form-control" placeholder="User's birthdate">
+          <input formControlName="Birthdate" mask="00/00/0000" [dropSpecialCharacters]="false" [ngClass]="{'is-invalid' : submitted && form.controls.Birthdate.errors}" type="text" class="form-control" placeholder="User's birthdate">
           <ng-container *ngIf="submitted && form.controls.Birthdate.errors">
-            <small *ngIf="form.controls.Birthdate.errors.required" class="d-inline-block">Birthdate is required</small>
-            <small *ngIf="form.controls.Birthdate.errors.invalid" class="d-inline-block">Birthdate format is invalid</small>
+            <small *ngIf="form.controls.Birthdate.errors.required" class="d-inline-block text-danger">Birthdate is required</small>
+            <small *ngIf="form.controls.Birthdate.errors.invalid" class="d-inline-block text-danger">Birthdate format is invalid</small>
           </ng-container>
         </div>
       </div>
@@ -43,12 +43,12 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="Country">Country of birth</label>
-          <select formControlName="Country" class="form-control custom-select">
+          <select formControlName="Country" [ngClass]="{'is-invalid' : submitted && form.controls.Country.errors}" class="form-control custom-select">
             <option value="">Select country of birth</option>
             <option *ngFor="let country of countries" [ngValue]="country.Name">{{ country.Name }}</option>
           </select>
           <ng-container *ngIf="submitted && form.controls.Country.errors">
-            <small *ngIf="form.controls.Country.errors.required" class="d-inline-block">Country is required</small>
+            <small *ngIf="form.controls.Country.errors.required" class="d-inline-block text-danger">Country is required</small>
           </ng-container>
         </div>
       </div>
