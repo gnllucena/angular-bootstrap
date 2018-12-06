@@ -14,14 +14,26 @@ export class ToastService {
   constructor(private toastr: ToastrService) { }
   
   success(message: string, title: string = '') {
+    if (!title) {
+      title = 'Oh yeah!';
+    }
+
     this.toastr.success(message, title, this.options);
   }
 
   alert(message: string, title: string = '') {
+    if (!title) {
+      title = 'Oops!';
+    }
+
     this.toastr.warning(message, title, this.options);
   }
 
   error(message: string, title: string = '') {
+    if (!title) {
+      title = 'Oh noes!';
+    }
+
     this.toastr.error(message, title, this.options);
   }
 }

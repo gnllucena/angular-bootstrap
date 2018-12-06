@@ -22,7 +22,7 @@ export class UsersPageComponent implements OnInit {
   @ViewChild('userList') userList: UsersListComponent;
   @ViewChild('userAdd') userAdd: UsersAddComponent;
   @ViewChild('userEdit') userEdit: UsersEditComponent;
-  // @ViewChild('userDelete') userDelete: ConfirmationModalComponent;
+  @ViewChild('userDelete') userDelete: ConfirmationModalComponent;
 
   public countries: Country[] = [];
 
@@ -80,14 +80,6 @@ export class UsersPageComponent implements OnInit {
 
   delete(user: User): void {
     // this.userDelete.visible.next(true);
-  }
-
-  applyAdd(user: User): void {
-
-  }
-
-  applyEdit(user: User): void {
-
   }
 
   applyDelete(user: User): void {

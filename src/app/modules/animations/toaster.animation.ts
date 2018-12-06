@@ -1,34 +1,28 @@
-import {trigger, animate, style, transition, state, keyframes} from '@angular/animations';
+import { trigger, animate, style, transition, state } from '@angular/animations';
 
 export const ToasterAnimation = trigger('flyInOut', [
-    state('inactive', style({
-      opacity: 0,
-    })),
-    transition('inactive => active', animate('400ms ease-out', keyframes([
-      style({
-        transform: 'translate3d(100%, 0, 0) skewX(-30deg)',
-        opacity: 0,
-      }),
-      style({
-        transform: 'skewX(20deg)',
-        opacity: 1,
-      }),
-      style({
-        transform: 'skewX(-5deg)',
-        opacity: 1,
-      }),
-      style({
-        transform: 'none',
-        opacity: 1,
-      }),
-    ]))),
-    transition('active => removed', animate('400ms ease-out', keyframes([
-      style({
-        opacity: 1,
-      }),
-      style({
-        transform: 'translate3d(100%, 0, 0) skewX(30deg)',
-        opacity: 0,
-      }),
-    ]))),
-  ])
+  state('inactive', 
+    style({ 
+      transform: 'translateX(100%)',
+      opacity: '0',
+    })
+  ),
+  state('active', 
+    style({ 
+      transform: 'translateX(0)',
+      opacity: '1',
+    })
+  ),
+  state('removed',
+    style({ 
+      transform: 'translateX(100%)',
+      opacity: '0',
+    })
+  ),
+  transition('inactive => active', [
+    animate('200ms ease-out')
+  ]),
+  transition('active => removed', [
+    animate('200ms ease-out')
+  ]),
+])

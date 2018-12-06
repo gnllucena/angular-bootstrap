@@ -19,7 +19,7 @@ import { ToasterAnimation } from '../animations/toaster.animation';
         </div>
       </div>
       <div class="col-3 text-right">
-        <a *ngIf="options.closeButton" (click)="remove()" class="btn btn-pink btn-sm">
+        <a *ngIf="options.closeButton" (click)="remove()" class="btn btn-sm">
           close
         </a>
       </div>
