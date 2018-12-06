@@ -1,9 +1,9 @@
-import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { ToastrService, ToastPackage, Toast } from 'ngx-toastr';
+import { ToasterAnimation } from '../animations/toaster.animation';
 
 @Component({
-  selector: '[pink-toast-component]',
+  selector: '[toast-component]',
   template: `
     <div class="row" [style.display]="state.value === 'inactive' ? 'none' : ''">
       <div class="col-9">
@@ -19,9 +19,6 @@ import { ToastrService, ToastPackage, Toast } from 'ngx-toastr';
         </div>
       </div>
       <div class="col-3 text-right">
-        <a *ngIf="!options.closeButton" class="btn btn-pink btn-sm" (click)="action($event)">
-          {{ undoString }}
-        </a>
         <a *ngIf="options.closeButton" (click)="remove()" class="btn btn-pink btn-sm">
           close
         </a>
@@ -31,45 +28,10 @@ import { ToastrService, ToastPackage, Toast } from 'ngx-toastr';
       <div class="toast-progress" [style.width]="width + '%'"></div>
     </div>
   `,
-  animations: [
-    trigger('flyInOut', [
-      state('inactive', style({
-        opacity: 0,
-      })),
-      transition('inactive => active', animate('400ms ease-out', keyframes([
-        style({
-          transform: 'translate3d(100%, 0, 0) skewX(-30deg)',
-          opacity: 0,
-        }),
-        style({
-          transform: 'skewX(20deg)',
-          opacity: 1,
-        }),
-        style({
-          transform: 'skewX(-5deg)',
-          opacity: 1,
-        }),
-        style({
-          transform: 'none',
-          opacity: 1,
-        }),
-      ]))),
-      transition('active => removed', animate('400ms ease-out', keyframes([
-        style({
-          opacity: 1,
-        }),
-        style({
-          transform: 'translate3d(100%, 0, 0) skewX(30deg)',
-          opacity: 0,
-        }),
-      ]))),
-    ]),
-  ],
+  animations: [ ToasterAnimation ],
   preserveWhitespaces: false,
 })
 export class ToastComponent extends Toast {
-  undoString = 'undo';
-
   constructor(
     protected toastrService: ToastrService,
     public toastPackage: ToastPackage) {
@@ -78,8 +40,9 @@ export class ToastComponent extends Toast {
 
   action(event: Event) {
     event.stopPropagation();
-    this.undoString = 'undid';
+    
     this.toastPackage.triggerAction();
+
     return false;
   }
 }

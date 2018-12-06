@@ -4,7 +4,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="Name">Name</label>
-          <input formControlName="Name" [ngClass]="{'is-invalid' : submitted && form.controls.Name.errors}" type="text" class="form-control" placeholder="User's name">
+          <input [formControl]="form.controls['Name']" [ngClass]="{'is-invalid' : submitted && form.controls.Name.errors}" type="text" class="form-control" placeholder="User's name">
           <ng-container *ngIf="submitted && form.controls.Name.errors">
             <small *ngIf="form.controls.Name.errors.required" class="d-inline-block text-danger">Name is required</small>
             <small *ngIf="form.controls.Name.errors.maxlength" class="d-inline-block text-danger">Name must not have more than 30 caractheres</small>
@@ -12,7 +12,7 @@
         </div>
         <div class="form-group col-md-6">
           <label for="Email">Email</label>
-          <input formControlName="Email" [ngClass]="{'is-invalid' : submitted && form.controls.Email.errors}" type="text" class="form-control" placeholder="User's email">
+          <input [formControl]="form.controls['Email']" [ngClass]="{'is-invalid' : submitted && form.controls.Email.errors}" type="text" class="form-control" placeholder="User's email">
           <ng-container *ngIf="submitted && form.controls.Email.errors">
             <small *ngIf="form.controls.Email.errors.required" class="d-inline-block text-danger">Email is required</small>
             <small *ngIf="form.controls.Email.errors.email" class="d-inline-block text-danger">Email must be a valid email address</small>
@@ -24,7 +24,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="Document">Document</label>
-          <input formControlName="Document" mask="000.000.000-00" [ngClass]="{'is-invalid' : submitted && form.controls.Document.errors}" type="text" class="form-control" placeholder="User's document">
+          <input [formControl]="form.controls['Document']" mask="000.000.000-00" [ngClass]="{'is-invalid' : submitted && form.controls.Document.errors}" type="text" class="form-control" placeholder="User's document">
           <ng-container *ngIf="submitted && form.controls.Document.errors">
             <small *ngIf="form.controls.Document.errors.required" class="d-inline-block text-danger">Document is required</small>
             <small *ngIf="form.controls.Document.errors.invalid" class="d-inline-block text-danger">Document format is invalid</small>
@@ -32,7 +32,7 @@
         </div>
         <div class="form-group col-md-6">
           <label for="Birthdate">Birthdate</label>
-          <input formControlName="Birthdate" mask="00/00/0000" [dropSpecialCharacters]="false" [ngClass]="{'is-invalid' : submitted && form.controls.Birthdate.errors}" type="text" class="form-control" placeholder="User's birthdate">
+          <input [formControl]="form.controls['Birthdate']"  mask="00/00/0000" [dropSpecialCharacters]="false" [ngClass]="{'is-invalid' : submitted && form.controls.Birthdate.errors}" type="text" class="form-control" placeholder="User's birthdate">
           <ng-container *ngIf="submitted && form.controls.Birthdate.errors">
             <small *ngIf="form.controls.Birthdate.errors.required" class="d-inline-block text-danger">Birthdate is required</small>
             <small *ngIf="form.controls.Birthdate.errors.invalid" class="d-inline-block text-danger">Birthdate format is invalid</small>
@@ -43,7 +43,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="Country">Country of birth</label>
-          <select formControlName="Country" [ngClass]="{'is-invalid' : submitted && form.controls.Country.errors}" class="form-control custom-select">
+          <select [formControl]="form.controls['Country']" [ngClass]="{'is-invalid' : submitted && form.controls.Country.errors}" class="form-control custom-select">
             <option value="">Select country of birth</option>
             <option *ngFor="let country of countries" [ngValue]="country.Name">{{ country.Name }}</option>
           </select>
@@ -58,11 +58,11 @@
           <label for="Name">User profile</label>
           <div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input formControlName="Profile" type="radio" value="Administrator" id="AdministratorUser{{parent}}" class="custom-control-input">
+              <input [formControl]="form.controls['Profile']" type="radio" value="Administrator" id="AdministratorUser{{parent}}" class="custom-control-input">
               <label class="custom-control-label" for="AdministratorUser{{parent}}">Administrator</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-              <input formControlName="Profile" type="radio" value="Regular" id="RegularUser{{parent}}" class="custom-control-input">
+              <input [formControl]="form.controls['Profile']" type="radio" value="Regular" id="RegularUser{{parent}}" class="custom-control-input">
               <label class="custom-control-label" for="RegularUser{{parent}}">Regular user</label>
             </div>
           </div>
@@ -72,7 +72,7 @@
           <label for="Name">Active</label>
           
           <div class="custom-control custom-checkbox my-1 mr-sm-2">
-            <input formControlName="Active" type="checkbox" id="ActiveUser{{parent}}" class="custom-control-input">
+            <input [formControl]="form.controls['Active']" type="checkbox" id="ActiveUser{{parent}}" class="custom-control-input">
             <label class="custom-control-label" for="ActiveUser{{parent}}">Check if you want to activate user</label>
           </div>
         </div>

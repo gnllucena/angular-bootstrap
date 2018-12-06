@@ -6,9 +6,9 @@ export class ToastService {
   
   private options = {
     timeOut: 3000,
-    extendedTimeOut: 1000,
+    extendedTimeOut: 1500,
     tapToDismiss: true,
-    progressBar: true,
+    progressBar: true
   };
 
   constructor(private toastr: ToastrService) { }

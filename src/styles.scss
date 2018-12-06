@@ -1,5 +1,5 @@
-@import "~bootstrap/dist/css/bootstrap.min.css";
-@import '~ngx-toastr/toastr.css';
+@import "~bootstrap/scss/bootstrap";
+@import '~ngx-toastr/toastr-bs4-alert';
 
 body {
   &.overflow {
