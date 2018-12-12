@@ -13,21 +13,21 @@
           <div class="form-group">
             <label class="form-control-label">Email address</label>
               <div class="input-group input-group-transparent">
-                <input formControlName="Email" autofocus type="email" class="form-control" id="input-email" placeholder="name@example.com" autocomplete="off">
+                <input [formControl]="form.controls['Email']" [ngClass]="{'is-invalid' : submitted && form.controls.Email.errors}" autofocus type="email" class="form-control" id="input-email" placeholder="name@example.com" autocomplete="off">
               </div>
               <ng-container *ngIf="submitted && form.controls.Email.errors">
-                <small *ngIf="form.controls.Email.errors.required" class="d-inline-block">Email is required</small>
-                <small *ngIf="form.controls.Email.errors.email" class="d-inline-block">Email must be a valid email address</small>
+                <small *ngIf="form.controls.Email.errors.required" class="d-inline-block text-danger">Email is required</small>
+                <small *ngIf="form.controls.Email.errors.email" class="d-inline-block text-danger">Email must be a valid email address</small>
               </ng-container>
           </div>
           <div class="form-group mb-4">
             <label class="form-control-label">Password</label>
             <div class="input-group input-group-transparent">
-              <input formControlName="Password" type="password" class="form-control" id="input-password" placeholder="Password" autocomplete="off">
+              <input [formControl]="form.controls['Password']" [ngClass]="{'is-invalid' : submitted && form.controls.Password.errors}" type="password" class="form-control" id="input-password" placeholder="Password" autocomplete="off">
             </div>
             <ng-container *ngIf="submitted && form.controls.Password.errors">
-              <small *ngIf="form.controls.Password.errors.required">Password is required</small>
-              <small *ngIf="form.controls.Password.errors.minlength">Password must be at least 6 characters</small>
+              <small *ngIf="form.controls.Password.errors.required" class="d-inline-block text-danger">Password is required</small>
+              <small *ngIf="form.controls.Password.errors.minlength" class="d-inline-block text-danger">Password must be at least 6 characters</small>
             </ng-container>
           </div>
           <div class="text-center mb-3">

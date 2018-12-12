@@ -27,13 +27,13 @@
               <label>{{ user.Birthdate.toLocaleDateString(locale) }}</label>
             </div>
           </div>
-          <div class="col-2 col-md-1">
-            <a (click)="edit(user)" href="javascript:void(0);" class="action-icon">
-              <fa-icon [icon]="faEdit"></fa-icon>
-            </a>
-            <a (click)="delete(user)" href="javascript:void(0);" class="action-icon">
-              <fa-icon [icon]="faTrash"></fa-icon>
-            </a>
+          <div class="col-1 col-md-1 text-center dropdown">
+            <fa-icon [icon]="faEllipsisV"></fa-icon>
+            
+            <div class="dropdown-content">
+              <a (click)="edit(user)" href="javascript:void(0);" class="action-icon">Editar</a>
+              <a (click)="delete(user)" href="javascript:void(0);" class="action-icon">Excluir</a>
+            </div>
           </div>
         </div>
       </div>

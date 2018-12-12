@@ -9,7 +9,7 @@ export const ListAnimation = trigger('list-transition', [
           '120ms',
           animate('550ms ease-out',
             style({ 
-              opacity: 1, 
+              opacity: 1,
               transform: 'translateY(0px)' 
             })
           )
