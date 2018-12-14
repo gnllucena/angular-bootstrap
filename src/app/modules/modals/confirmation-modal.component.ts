@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, ElementRef, ViewChild, Renderer2 } from '@angular/core';
-import { OverlayAnimation } from '../animations/overlay.animation';
+import { FadeAnimation } from '../animations/fade.animation';
 import { BehaviorSubject } from 'rxjs';
 import { ModalAnimation } from '../animations/modal.animation';
 
@@ -7,7 +7,7 @@ import { ModalAnimation } from '../animations/modal.animation';
   selector: 'confirmation-modal',
   templateUrl: './confirmation-modal.component.html',
   encapsulation: ViewEncapsulation.None,
-  animations: [ OverlayAnimation, ModalAnimation ],
+  animations: [ FadeAnimation, ModalAnimation ],
 })
 
 export class ConfirmationModalComponent {

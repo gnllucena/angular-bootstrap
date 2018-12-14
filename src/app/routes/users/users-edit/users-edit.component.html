@@ -1,4 +1,4 @@
-<div [@overlay-transition]="(visible | async) ? 'visible' : 'hidden'" class="overlay" (click)="close()"></div>
+<div [@fade-transition]="(visible | async) ? 'visible' : 'hidden'" class="overlay" (click)="close()"></div>
 
 <div #panel [@panel-transition]="(visible | async)  ? 'visible' : 'hidden'" class="panel">
   <div class="float-left">

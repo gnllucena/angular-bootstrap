@@ -6,7 +6,7 @@ import { Location } from '@angular/common';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
-import { OverlayAnimation } from 'src/app/modules/animations/overlay.animation';
+import { FadeAnimation } from 'src/app/modules/animations/fade.animation';
 import { Country } from 'src/app/domain/country';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateValidation } from 'src/app/modules/validations/date.validation';
@@ -19,7 +19,7 @@ import { UsersFormComponent } from '../users-form/users-form.component';
   selector: 'users-add',
   templateUrl: './users-add.component.html',
   encapsulation: ViewEncapsulation.None,
-  animations: [ PanelAnimation, OverlayAnimation ]
+  animations: [ PanelAnimation, FadeAnimation ]
 })
 export class UsersAddComponent {
   @ViewChild('panel') panel: ElementRef;

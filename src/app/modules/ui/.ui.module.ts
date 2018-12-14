@@ -6,6 +6,7 @@ import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header.component';
 import { FooterComponent } from './footer.component';
 import { NotFoundComponent } from './not-found.component';
+import { PaginationComponent } from './pagination.component';
 
 @NgModule({
   imports: [
@@ -16,13 +17,15 @@ import { NotFoundComponent } from './not-found.component';
     LayoutComponent, 
     HeaderComponent, 
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    PaginationComponent
   ],
   exports: [
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    PaginationComponent
   ]
 })
 export class UIModule { }

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Output, EventEmitter, Inject, LOCALE_ID } from '@angular/core';
+import { Component, ViewEncapsulation, Output, EventEmitter, Inject, LOCALE_ID, ViewChild } from '@angular/core';
 import { faTrash, faEdit, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { ListAnimation } from './../../../modules/animations/list.animation';
 import { User } from '../../../domain/user';
@@ -7,6 +7,7 @@ import { Pagination } from 'src/app/domain/pagination';
 import { FormGroup } from '@angular/forms';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { HttpService } from 'src/app/services/http.service';
+import { PaginationComponent } from 'src/app/modules/ui/pagination.component';
 
 @Component({
   selector: 'users-list',
@@ -16,6 +17,8 @@ import { HttpService } from 'src/app/services/http.service';
 })
 
 export class UsersListComponent {
+  @ViewChild('pagination') paginateList: PaginationComponent;
+
   @Output() editEvent: EventEmitter<User> = new EventEmitter<User>();
   @Output() deleteEvent: EventEmitter<User> = new EventEmitter<User>();
 
@@ -34,6 +37,14 @@ export class UsersListComponent {
 
   delete(user: User): void {
     this.deleteEvent.emit(user);
+  }
+  
+  show(): void {
+    
+  }
+
+  hide(): void { 
+    
   }
 
   list(offset: number, limit: number, filters: FormGroup): Observable<Pagination<User>> {

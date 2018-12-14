@@ -1,13 +1,13 @@
 import { Component, ViewEncapsulation, Renderer2, ViewChild, ElementRef, LOCALE_ID, Inject } from '@angular/core';
 import { faTimes, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { PanelAnimation } from 'src/app/modules/animations/panel.animation';
-import { OverlayAnimation } from 'src/app/modules/animations/overlay.animation';
+import { FadeAnimation } from 'src/app/modules/animations/fade.animation';
 import { BehaviorSubject } from 'rxjs';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { User } from 'src/app/domain/user';
 import { Country } from 'src/app/domain/country';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateValidation } from 'src/app/modules/validations/date.validation';
 import { HttpService } from 'src/app/services/http.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -17,7 +17,7 @@ import { UsersFormComponent } from '../users-form/users-form.component';
   selector: 'users-edit',
   templateUrl: './users-edit.component.html',
   encapsulation: ViewEncapsulation.None,
-  animations: [ PanelAnimation, OverlayAnimation ]
+  animations: [ PanelAnimation, FadeAnimation ]
 })
 export class UsersEditComponent {
   @ViewChild('panel') panel: ElementRef;

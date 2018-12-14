@@ -1,6 +1,6 @@
-import { trigger,animate, style, query, transition, stagger, keyframes, state } from '@angular/animations';
+import { trigger,animate, style, transition, state } from '@angular/animations';
 
-export const OverlayAnimation = trigger('overlay-transition', [
+export const FadeAnimation = trigger('fade-transition', [
   state('hidden',
     style({
       zIndex: '-1',

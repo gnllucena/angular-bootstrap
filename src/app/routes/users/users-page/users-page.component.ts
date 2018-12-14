@@ -22,7 +22,7 @@ export class UsersPageComponent implements OnInit {
   @ViewChild('userList') userList: UsersListComponent;
   @ViewChild('userAdd') userAdd: UsersAddComponent;
   @ViewChild('userEdit') userEdit: UsersEditComponent;
-  @ViewChild('userDelete') userDelete: ConfirmationModalComponent;
+  // @ViewChild('userDelete') userDelete: ConfirmationModalComponent;
 
   public countries: Country[] = [];
 
