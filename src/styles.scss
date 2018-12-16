@@ -119,7 +119,7 @@ body {
   box-shadow: none;
 }
 
-.btn:focus, .btn:active {
+.btn:focus, .btn:active, .page-item.active .page-link, .page-item .page-link {
   outline: none !important;
   box-shadow: none;
 }

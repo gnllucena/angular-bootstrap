@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Renderer2, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
 import { PanelAnimation } from 'src/app/modules/animations/panel.animation';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/domain/user';
@@ -24,6 +24,8 @@ import { UsersFormComponent } from '../users-form/users-form.component';
 export class UsersAddComponent {
   @ViewChild('panel') panel: ElementRef;
   @ViewChild('userForm') userForm: UsersFormComponent;
+
+  @Output() doneEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   
   public visible = new BehaviorSubject<Boolean>(false);
   public form: FormGroup;
@@ -86,6 +88,8 @@ export class UsersAddComponent {
     this.httpService.post('users', this.form)
       .subscribe(() => {
         this.toastService.success('the user was successfully added');
+        
+        this.doneEvent.emit(true);
         
         this.close();
       });

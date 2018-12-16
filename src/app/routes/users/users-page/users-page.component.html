@@ -14,11 +14,13 @@
   </users-list>
 
   <users-add 
-    #userAdd>
+    #userAdd
+    (doneEvent)="refresh()">
   </users-add>
 
   <users-edit 
-    #userEdit>
+    #userEdit
+    (doneEvent)="refresh()">
   </users-edit>
 
   <!-- <confirmation-modal 

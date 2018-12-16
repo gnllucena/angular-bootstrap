@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Renderer2, ViewChild, ElementRef, LOCALE_ID, Inject } from '@angular/core';
+import { Component, ViewEncapsulation, Renderer2, ViewChild, ElementRef, LOCALE_ID, Inject, Output, EventEmitter } from '@angular/core';
 import { faTimes, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { PanelAnimation } from 'src/app/modules/animations/panel.animation';
 import { FadeAnimation } from 'src/app/modules/animations/fade.animation';
@@ -22,6 +22,8 @@ import { UsersFormComponent } from '../users-form/users-form.component';
 export class UsersEditComponent {
   @ViewChild('panel') panel: ElementRef;
   @ViewChild('userForm') userForm: UsersFormComponent;
+
+  @Output() doneEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public visible = new BehaviorSubject<Boolean>(false);
   public form: FormGroup;
@@ -86,6 +88,8 @@ export class UsersEditComponent {
       .subscribe(() => {
         this.toastService.success('the user was successfully edited')
         
+        this.doneEvent.emit(true);
+
         this.close();
       });
   }

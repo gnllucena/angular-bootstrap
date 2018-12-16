@@ -2,10 +2,10 @@
   10 out of {{ pagination.Total }} users
 </div>
 
-<ng-container *ngIf='pagination | async as pagination'>
-  <div [@list-transition]='pagination.Items.length'
-       (@list-transition.start)='hide($event)'
-       (@list-transition.done)='show($event)'>
+<ng-container *ngIf="pagination | async as pagination">
+  <div [@list-transition]="pagination.Items.length"
+       (@list-transition.start)="hide($event)"
+       (@list-transition.done)="show($event)">
 
     <div *ngFor="let user of pagination.Items">
       <div class="card mb-2" style="padding: 15px;">
@@ -48,4 +48,8 @@
   </div>
 </ng-container>
 
-<pagination #pages [pagination]="pagination | async"></pagination>
+<pagination 
+  #pages 
+  [pagination]="pagination | async"
+  (paginateEvent)="list($event, null)">
+</pagination>

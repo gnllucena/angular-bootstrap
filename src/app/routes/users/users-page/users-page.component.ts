@@ -5,7 +5,6 @@ import { FormGroup } from '@angular/forms';
 import { UsersAddComponent } from '../users-add/users-add.component';
 import { User } from 'src/app/domain/user';
 import { UsersEditComponent } from '../users-edit/users-edit.component';
-import { ConfirmationModalComponent } from 'src/app/modules/modals/confirmation-modal.component';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { forkJoin } from 'rxjs';
@@ -32,7 +31,7 @@ export class UsersPageComponent implements OnInit {
     private countryService: HttpService<Country>,) { }
 
   ngOnInit(): void {
-    let list = this.userList.list(0, 10, null);
+    let list = this.userList.list(0, null);
     let countries = this.countryService.list('countries');
 
     if (this.router.url.includes('new')) {  
@@ -63,7 +62,7 @@ export class UsersPageComponent implements OnInit {
   }
 
   filter(filters: FormGroup): void {
-    this.userList.list(0, 10, filters);
+    this.userList.list(0, filters);
   }
 
   add(): void {
@@ -76,6 +75,10 @@ export class UsersPageComponent implements OnInit {
     this.userEdit.user = user;
     this.userEdit.countries = this.countries;
     this.userEdit.visible.next(true);
+  }
+
+  refresh(): void {
+    this.userList.list(null, null);
   }
 
   delete(user: User): void {

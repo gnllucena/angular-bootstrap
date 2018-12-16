@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, Output, EventEmitter, Inject, LOCALE_ID, 
 import { faTrash, faEdit, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { ListAnimation } from './../../../modules/animations/list.animation';
 import { User } from '../../../domain/user';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Pagination } from 'src/app/domain/pagination';
 import { FormGroup } from '@angular/forms';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -26,6 +26,9 @@ export class UsersListComponent {
   public faEdit: IconDefinition = faEdit;
   public faEllipsisV: IconDefinition = faEllipsisV;
   public pagination: Observable<Pagination<User>>;
+  public limit: number = 10;
+  public offset: number;
+  public filters: FormGroup;
 
   constructor(
     public userService: HttpService<User>,
@@ -51,8 +54,20 @@ export class UsersListComponent {
     }
   }
 
-  list(offset: number, limit: number, filters: FormGroup): Observable<Pagination<User>> {
-    this.pagination = this.userService.paginate('users', offset, limit, filters);
+  list(offset: number, filters: FormGroup): Observable<Pagination<User>> {
+    if (!filters) {
+      filters = this.filters;
+    } else {
+      this.filters = filters;
+    }
+
+    if (offset === null || offset === undefined) {
+      offset = this.offset;
+    } else {
+      this.offset = offset;
+    }
+
+    this.pagination = this.userService.paginate('users', offset, this.limit, filters);
     
     return this.pagination;
   }

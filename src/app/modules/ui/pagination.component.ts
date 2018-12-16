@@ -37,7 +37,10 @@ export class PaginationComponent {
     if (!data)
       return;
 
-    if (data.Offset <= data.Limit) {
+    this.isFirstPage = false;
+    this.isLastPage = false;
+    
+    if (data.Offset < data.Limit) {
       this.isFirstPage = true;
     }
 
@@ -46,7 +49,8 @@ export class PaginationComponent {
     }
 
     this.pages = new Array<string>();
-    this.currentPage = Math.ceil(data.Offset + 1 / data.Limit);
+    this.limit = data.Limit;
+    this.currentPage = Math.ceil(data.Offset / data.Limit + 1);
     this.lastPage = Math.ceil(data.Total / data.Limit);
         
     let delta = 2;
@@ -79,19 +83,21 @@ export class PaginationComponent {
   }
 
   paginate(number: any): void {
-    let value = Number(number);
+    let page = Number(number);
 
-    if (value) {
-      this.paginateEvent.emit(value);
+    if (page) {
+      this.paginateEvent.emit((page - 1) * this.limit);
     }
   }
 
   public visible = new BehaviorSubject<Boolean>(false);
   public faAngleLeft: IconDefinition = faAngleLeft;
   public faAngleRight: IconDefinition = faAngleRight;
+
   public pages: Array<string> = new Array<string>();
   public currentPage: number;
   public lastPage: number;
+  public limit: number; 
   public isLastPage: boolean;
   public isFirstPage: boolean;
 }
