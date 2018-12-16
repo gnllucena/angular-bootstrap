@@ -7,9 +7,11 @@ import { HeaderComponent } from './header.component';
 import { FooterComponent } from './footer.component';
 import { NotFoundComponent } from './not-found.component';
 import { PaginationComponent } from './pagination.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
+    FontAwesomeModule,
     CommonModule,
     RouterModule
   ],

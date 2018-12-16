@@ -1,5 +1,5 @@
 export class Pagination<T>  {
-  public constructor(init?:Partial<Pagination<T>>) {
+  public constructor(init?: Partial<Pagination<T>>) {
     Object.assign(this, init);
   }
 

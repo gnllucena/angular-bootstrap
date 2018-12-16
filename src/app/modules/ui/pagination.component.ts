@@ -1,32 +1,97 @@
-import { Component, ViewEncapsulation, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { faAngleRight, faAngleLeft, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Pagination } from 'src/app/domain/pagination';
 import { FadeAnimation } from '../animations/fade.animation';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'pagination',
-  templateUrl: './pagination.component.html',
+  template: `
+    <nav [@fade-transition]="(visible | async) ? 'visible' : 'hidden'">
+      <ul class="pagination justify-content-end">
+        <li [ngClass]="{'disabled' : isFirstPage }" class="page-item">
+          <a (click)="paginate(currentPage - 1)" class="page-link" href="javascript:void(0);">
+            <fa-icon [icon]="faAngleLeft"></fa-icon>
+          </a>
+        </li>
+
+        <li *ngFor="let page of pages" [ngClass]="{'active' : currentPage == page }" class="page-item">
+          <a (click)="paginate(page)" class="page-link" href="javascript:void(0);">{{ page }}</a>
+        </li>
+        
+        <li [ngClass]="{'disabled' : isLastPage }" class="page-item">
+          <a (click)="paginate(currentPage + 1)" class="page-link" href="javascript:void(0);">
+            <fa-icon [icon]="faAngleRight"></fa-icon>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  `,
   encapsulation: ViewEncapsulation.None,
   animations: [ FadeAnimation ]
 })
 export class PaginationComponent {
+  @Output() paginateEvent: EventEmitter<number> = new EventEmitter<number>();
+  
   @Input() set pagination(data: Pagination<object>) {
+    if (!data)
+      return;
+
     if (data.Offset <= data.Limit) {
-      this.firstPage = true;
+      this.isFirstPage = true;
     }
 
     if (data.Offset >= data.Total - data.Limit) {
-      this.lastPage = true;
+      this.isLastPage = true;
     }
 
-    let pages = Math.ceil(data.Total / data.Limit);
+    this.pages = new Array<string>();
+    this.currentPage = Math.ceil(data.Offset + 1 / data.Limit);
+    this.lastPage = Math.ceil(data.Total / data.Limit);
+        
+    let delta = 2;
+    let range = [];
+    let aux;
 
-    this.pages = Array.from(Array(10).keys(), n => n + 1)
+    range.push(1);
+
+    for (let i = this.currentPage - delta; i <= this.currentPage + delta; i++) {
+      if (i < this.lastPage && i > 1) {
+        range.push(i);
+      }
+    }
+    
+    range.push(this.lastPage);
+
+    for (let i of range) {
+      if (aux) {
+        if (i - aux === 2) {
+          this.pages.push(aux + 1);
+        } else if (i - aux !== 1) {
+          this.pages.push('...');
+        }
+      }
+
+      this.pages.push(i);
+
+      aux = i;
+    }
+  }
+
+  paginate(number: any): void {
+    let value = Number(number);
+
+    if (value) {
+      this.paginateEvent.emit(value);
+    }
   }
 
   public visible = new BehaviorSubject<Boolean>(false);
-  public pages: Array<number> = new Array<number>();
+  public faAngleLeft: IconDefinition = faAngleLeft;
+  public faAngleRight: IconDefinition = faAngleRight;
+  public pages: Array<string> = new Array<string>();
   public currentPage: number;
-  public firstPage: boolean;
-  public lastPage: boolean;
+  public lastPage: number;
+  public isLastPage: boolean;
+  public isFirstPage: boolean;
 }

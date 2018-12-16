@@ -61,8 +61,8 @@ export class HttpBackendInterceptor implements HttpInterceptor {
         var data = new Date();
         
         users.push(new User({ Id: 1, Name: 'Pikachu', Email: 'pikachu@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
-        // users.push(new User({ Id: 2, Name: 'Charmander', Email: 'charmander@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Regular', Active: false }));
-        // users.push(new User({ Id: 3, Name: 'Squirtle', Email: 'squirtle@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
+        users.push(new User({ Id: 2, Name: 'Charmander', Email: 'charmander@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Regular', Active: false }));
+        users.push(new User({ Id: 3, Name: 'Squirtle', Email: 'squirtle@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
         // users.push(new User({ Id: 4, Name: 'Bulbasaur', Email: 'bulbasaur@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
         // users.push(new User({ Id: 5, Name: 'Mew', Email: 'mew@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: false }));
         // users.push(new User({ Id: 6, Name: 'Chansey', Email: 'chansey@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));

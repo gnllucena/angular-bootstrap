@@ -1,5 +1,5 @@
 export class Card {
-  public constructor(init?:Partial<Card>) {
+  public constructor(init?: Partial<Card>) {
     Object.assign(this, init);
   }
 
