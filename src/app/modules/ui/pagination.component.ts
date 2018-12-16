@@ -21,10 +21,10 @@ export class PaginationComponent {
 
     let pages = Math.ceil(data.Total / data.Limit);
 
-    this.pages = Array.from(Array(pages).keys(), n => n + 1)
+    this.pages = Array.from(Array(10).keys(), n => n + 1)
   }
 
-  public visible = new BehaviorSubject<Boolean>(true);
+  public visible = new BehaviorSubject<Boolean>(false);
   public pages: Array<number> = new Array<number>();
   public currentPage: number;
   public firstPage: boolean;

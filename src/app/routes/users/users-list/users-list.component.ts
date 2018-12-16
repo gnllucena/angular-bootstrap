@@ -17,7 +17,7 @@ import { PaginationComponent } from 'src/app/modules/ui/pagination.component';
 })
 
 export class UsersListComponent {
-  @ViewChild('pagination') paginateList: PaginationComponent;
+  @ViewChild('pages') pages: PaginationComponent;
 
   @Output() editEvent: EventEmitter<User> = new EventEmitter<User>();
   @Output() deleteEvent: EventEmitter<User> = new EventEmitter<User>();
@@ -39,12 +39,16 @@ export class UsersListComponent {
     this.deleteEvent.emit(user);
   }
   
-  show(): void {
-    
+  show(event): void {
+    if (event.fromState == "void") {
+      this.pages.visible.next(true);
+    }
   }
 
-  hide(): void { 
-    
+  hide(event): void {
+    if (event.toState == "void") {
+      this.pages.visible.next(false);
+    }
   }
 
   list(offset: number, limit: number, filters: FormGroup): Observable<Pagination<User>> {
