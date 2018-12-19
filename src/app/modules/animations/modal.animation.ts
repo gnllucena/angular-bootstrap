@@ -5,12 +5,14 @@ export const ModalAnimation = trigger('modal-transition', [
     style({ 
       transform: 'translateY(100%)',
       opacity: '0',
+      zIndex: -1
     })
   ),
   state('visible', 
     style({ 
       transform: 'translateY(0)',
       opacity: '1',
+      zIndex: 9
     })
   ),
   transition('* => visible', [

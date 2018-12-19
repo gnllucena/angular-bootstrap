@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'pagination',
   template: `
-    <nav [@fade-transition]="(visible | async) ? 'visible' : 'hidden'">
+    <nav *ngIf="total > 0" [@fade-transition]="(visible | async) ? 'visible' : 'hidden'">
       <ul class="pagination justify-content-end">
         <li [ngClass]="{'disabled' : isFirstPage }" class="page-item">
           <a (click)="paginate(currentPage - 1)" class="page-link" href="javascript:void(0);">
@@ -50,6 +50,7 @@ export class PaginationComponent {
 
     this.pages = new Array<string>();
     this.limit = data.Limit;
+    this.total = data.Total;
     this.currentPage = Math.ceil(data.Offset / data.Limit + 1);
     this.lastPage = Math.ceil(data.Total / data.Limit);
         
@@ -97,7 +98,8 @@ export class PaginationComponent {
   public pages: Array<string> = new Array<string>();
   public currentPage: number;
   public lastPage: number;
-  public limit: number; 
+  public limit: number;
+  public total: number;
   public isLastPage: boolean;
   public isFirstPage: boolean;
 }

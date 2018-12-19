@@ -1,50 +1,63 @@
-<div class="small text-right">
-  10 out of {{ pagination.Total }} users
-</div>
+<pagination-information
+  #information 
+  [pagination]="pagination | async"
+  [entity]="'users'">
+</pagination-information>
 
 <ng-container *ngIf="pagination | async as pagination">
   <div [@list-transition]="pagination.Items.length"
        (@list-transition.start)="hide($event)"
        (@list-transition.done)="show($event)">
-
-    <div *ngFor="let user of pagination.Items">
-      <div class="card mb-2" style="padding: 15px;">
-        <div class="row justify-content-sm-between align-items-sm-center">
-          <div class="col-md-2">
-            <div class="form-group">
-              <label class="small">Name</label>
-              <label>{{ user.Name }}</label>
+    
+    <ng-container *ngIf="pagination.Items.length > 0; else no_items">
+      <div *ngFor="let user of pagination.Items">
+        <div class="card mb-2" style="padding: 15px;">
+          <div class="row justify-content-sm-between align-items-sm-center">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label class="small">Name</label>
+                <label>{{ user.Name }}</label>
+              </div>
             </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label class="small">Email</label>
-              <label>{{ user.Email }}</label>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="small">Email</label>
+                <label>{{ user.Email }}</label>
+              </div>
             </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label class="small">Document</label>
-              <label>{{ user.Document | mask: '000.000.000-00' }}</label>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="small">Document</label>
+                <label>{{ user.Document | mask: '000.000.000-00' }}</label>
+              </div>
             </div>
-          </div>
-          <div class="col-2 col-md-1">
-            <div class="form-group">
-              <label class="small">Birthday</label>
-              <label>{{ user.Birthdate.toLocaleDateString(locale) }}</label>
+            <div class="col-2 col-md-1">
+              <div class="form-group">
+                <label class="small">Birthday</label>
+                <label>{{ user.Birthdate.toLocaleDateString(locale) }}</label>
+              </div>
             </div>
-          </div>
-          <div class="col-1 col-md-1 text-center dropdown">
-            <fa-icon [icon]="faEllipsisV"></fa-icon>
-            
-            <div class="dropdown-content">
-              <a (click)="edit(user)" href="javascript:void(0);" class="action-icon">Editar</a>
-              <a (click)="delete(user)" href="javascript:void(0);" class="action-icon">Excluir</a>
+            <div class="col-1 col-md-1 text-center dropdown">
+              <fa-icon [icon]="faEllipsisV"></fa-icon>
+              
+              <div class="dropdown-content">
+                <a (click)="edit(user)" href="javascript:void(0);" class="action-icon">Editar</a>
+                <a (click)="delete(user)" href="javascript:void(0);" class="action-icon">Excluir</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </ng-container>
+    <ng-template #no_items>
+      <div class="card mb-2" style="padding: 15px;">
+        <div class="row justify-content-sm-between align-items-sm-center">
+          <div class="col-md-12 text-center">
+            We've searched for some users, but we haven't found any.
+          </div>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </ng-container>
 

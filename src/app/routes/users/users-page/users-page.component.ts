@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { forkJoin } from 'rxjs';
 import { Country } from 'src/app/domain/country';
+import { ConfirmationModalComponent } from 'src/app/modules/modals/confirmation-modal.component';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'users-page',
@@ -21,18 +23,20 @@ export class UsersPageComponent implements OnInit {
   @ViewChild('userList') userList: UsersListComponent;
   @ViewChild('userAdd') userAdd: UsersAddComponent;
   @ViewChild('userEdit') userEdit: UsersEditComponent;
-  // @ViewChild('userDelete') userDelete: ConfirmationModalComponent;
+  @ViewChild('userDelete') userDelete: ConfirmationModalComponent;
 
   public countries: Country[] = [];
+  public userDeleteCallback: Function;
 
   constructor(
     private router: Router,
-    private userService: HttpService<User>,
-    private countryService: HttpService<Country>,) { }
+    private userHttpService: HttpService<User>,
+    private countryHttpService: HttpService<Country>,
+    private toastService: ToastService) { }
 
   ngOnInit(): void {
     let list = this.userList.list(0, null);
-    let countries = this.countryService.list('countries');
+    let countries = this.countryHttpService.list('countries');
 
     if (this.router.url.includes('new')) {  
       forkJoin([list, countries]).subscribe(results => {
@@ -45,7 +49,7 @@ export class UsersPageComponent implements OnInit {
     } else if (this.router.url.includes('users/')) {
       let id = Number(this.router.url.split('users/')[1]);
 
-      let get = this.userService.get('users', id);
+      let get = this.userHttpService.get('users', id);
       
       forkJoin([list, countries, get]).subscribe(results => {
         this.userEdit.user = results[2];
@@ -65,6 +69,10 @@ export class UsersPageComponent implements OnInit {
     this.userList.list(0, filters);
   }
 
+  refresh(): void {
+    this.userList.list(null, null);
+  }
+
   add(): void {
     this.userAdd.user = new User();
     this.userAdd.countries = this.countries;
@@ -77,15 +85,14 @@ export class UsersPageComponent implements OnInit {
     this.userEdit.visible.next(true);
   }
 
-  refresh(): void {
-    this.userList.list(null, null);
-  }
-
   delete(user: User): void {
-    // this.userDelete.visible.next(true);
-  }
+    this.userDeleteCallback = () => {
+      this.userHttpService.delete('users', user.Id)
+        .subscribe(() => {
+          this.toastService.success('the user was successfully deleted');
+        });
+    }
 
-  applyDelete(user: User): void {
-
+    this.userDelete.visible.next(true);
   }
 }

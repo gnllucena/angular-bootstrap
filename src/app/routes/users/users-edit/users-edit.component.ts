@@ -36,7 +36,7 @@ export class UsersEditComponent {
     private renderer: Renderer2,
     private location: Location,
     private router: Router,
-    private httpService: HttpService<User>,
+    private userHttpService: HttpService<User>,
     private toastService: ToastService,
     @Inject(LOCALE_ID) private locale: string) {
 
@@ -84,9 +84,9 @@ export class UsersEditComponent {
   }
 
   submit() {
-    this.httpService.put('users', this.user.Id, this.form)
+    this.userHttpService.put('users', this.user.Id, this.form)
       .subscribe(() => {
-        this.toastService.success('the user was successfully edited')
+        this.toastService.success('the user was successfully edited');
         
         this.doneEvent.emit(true);
 

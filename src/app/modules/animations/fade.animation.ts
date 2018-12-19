@@ -14,9 +14,9 @@ export const FadeAnimation = trigger('fade-transition', [
     })
   ),
   transition('* => visible', [
-    animate('500ms')
+    animate('200ms')
   ]),
   transition('visible => hidden', [
-    animate('500ms')
+    animate('200ms')
   ]) 
 ]);

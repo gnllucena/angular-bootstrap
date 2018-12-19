@@ -8,6 +8,7 @@ import { FormGroup } from '@angular/forms';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { HttpService } from 'src/app/services/http.service';
 import { PaginationComponent } from 'src/app/modules/ui/pagination.component';
+import { PaginationInformationComponent } from 'src/app/modules/ui/pagination-information.component';
 
 @Component({
   selector: 'users-list',
@@ -18,6 +19,7 @@ import { PaginationComponent } from 'src/app/modules/ui/pagination.component';
 
 export class UsersListComponent {
   @ViewChild('pages') pages: PaginationComponent;
+  @ViewChild('information') information: PaginationInformationComponent;
 
   @Output() editEvent: EventEmitter<User> = new EventEmitter<User>();
   @Output() deleteEvent: EventEmitter<User> = new EventEmitter<User>();
@@ -45,12 +47,14 @@ export class UsersListComponent {
   show(event): void {
     if (event.fromState == "void") {
       this.pages.visible.next(true);
+      this.information.visible.next(true);
     }
   }
 
   hide(event): void {
     if (event.toState == "void") {
       this.pages.visible.next(false);
+      this.information.visible.next(false);
     }
   }
 

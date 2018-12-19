@@ -38,7 +38,7 @@ export class UsersAddComponent {
     private renderer: Renderer2, 
     private location: Location,
     private router: Router,
-    private httpService: HttpService<User>,
+    private userHttpService: HttpService<User>,
     private toastService: ToastService) {
 
     this.visible.subscribe((visible: Boolean) => {
@@ -85,12 +85,12 @@ export class UsersAddComponent {
   }
 
   submit() {
-    this.httpService.post('users', this.form)
+    this.userHttpService.post('users', this.form)
       .subscribe(() => {
         this.toastService.success('the user was successfully added');
         
         this.doneEvent.emit(true);
-        
+
         this.close();
       });
   }

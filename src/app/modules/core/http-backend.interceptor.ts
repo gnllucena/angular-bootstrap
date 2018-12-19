@@ -60,22 +60,33 @@ export class HttpBackendInterceptor implements HttpInterceptor {
         
         var data = new Date();
         
-        users.push(new User({ Id: 1, Name: 'Pikachu', Email: 'pikachu@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
-        users.push(new User({ Id: 2, Name: 'Charmander', Email: 'charmander@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Regular', Active: false }));
-        users.push(new User({ Id: 3, Name: 'Squirtle', Email: 'squirtle@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
-        users.push(new User({ Id: 4, Name: 'Bulbasaur', Email: 'bulbasaur@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
-        users.push(new User({ Id: 5, Name: 'Mew', Email: 'mew@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: false }));
-        users.push(new User({ Id: 6, Name: 'Chansey', Email: 'chansey@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
-        users.push(new User({ Id: 7, Name: 'Blaziken', Email: 'blaziken@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Hoenn', Profile: 'Regular', Active: true }));
-        users.push(new User({ Id: 8, Name: 'Feraligart', Email: 'feraligart@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Johto', Profile: 'Administrator', Active: true }));
-        users.push(new User({ Id: 9, Name: 'Chikorita', Email: 'chikorita@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Johto', Profile: 'Regular', Active: false }));
-        users.push(new User({ Id: 10, Name: 'Torchic', Email: 'torchic@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Hoenn', Profile: 'Regular', Active: true }));
+        let found = true;
+        let limit = 0;
+        let offset = 0
+        let total = 0;
+
+        if (found) {
+          users.push(new User({ Id: 1, Name: 'Pikachu', Email: 'pikachu@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
+          users.push(new User({ Id: 2, Name: 'Charmander', Email: 'charmander@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Regular', Active: false }));
+          users.push(new User({ Id: 3, Name: 'Squirtle', Email: 'squirtle@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
+          users.push(new User({ Id: 4, Name: 'Bulbasaur', Email: 'bulbasaur@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
+          users.push(new User({ Id: 5, Name: 'Mew', Email: 'mew@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: false }));
+          users.push(new User({ Id: 6, Name: 'Chansey', Email: 'chansey@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
+          users.push(new User({ Id: 7, Name: 'Blaziken', Email: 'blaziken@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Hoenn', Profile: 'Regular', Active: true }));
+          users.push(new User({ Id: 8, Name: 'Feraligart', Email: 'feraligart@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Johto', Profile: 'Administrator', Active: true }));
+          users.push(new User({ Id: 9, Name: 'Chikorita', Email: 'chikorita@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Johto', Profile: 'Regular', Active: false }));
+          users.push(new User({ Id: 10, Name: 'Torchic', Email: 'torchic@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Hoenn', Profile: 'Regular', Active: true }));
+
+          limit = Number((req.url.split('limit=')[1]).split('&')[0]),
+          offset = Number((req.url.split('offset=')[1]).split('&')[0]),
+          total = 192
+        }
         
         let pagination: Pagination<User> = {
           Items: users,
-          Limit: Number((req.url.split('limit=')[1]).split('&')[0]),
-          Offset:  Number((req.url.split('offset=')[1]).split('&')[0]),
-          Total: 192
+          Limit: limit,
+          Offset:  offset,
+          Total: total
         };
   
         return of(new HttpResponse({ status: 200, body: pagination }));

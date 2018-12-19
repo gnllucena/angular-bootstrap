@@ -2,9 +2,9 @@
   <h2 class="mb-4">Users</h2>
 
   <users-filter 
-    #userFilter 
-    (filterEvent)="filter($event)"
-    (addEvent)="add()">
+    #userFilter
+    (addEvent)="add()"
+    (filterEvent)="filter($event)">
   </users-filter>
 
   <users-list 
@@ -23,7 +23,10 @@
     (doneEvent)="refresh()">
   </users-edit>
 
-  <!-- <confirmation-modal 
-    #userDelete>
-  </confirmation-modal> -->
+  <confirmation-modal 
+    #userDelete
+    [callback]="userDeleteCallback"
+    [header]="'user deletion'"
+    [content]="'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.'">
+  </confirmation-modal>
 </div>

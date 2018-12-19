@@ -8,6 +8,7 @@ import { FooterComponent } from './footer.component';
 import { NotFoundComponent } from './not-found.component';
 import { PaginationComponent } from './pagination.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PaginationInformationComponent } from './pagination-information.component';
 
 @NgModule({
   imports: [
@@ -20,14 +21,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HeaderComponent, 
     FooterComponent,
     NotFoundComponent,
-    PaginationComponent
+    PaginationComponent,
+    PaginationInformationComponent
   ],
   exports: [
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
     NotFoundComponent,
-    PaginationComponent
+    PaginationComponent,
+    PaginationInformationComponent
   ]
 })
 export class UIModule { }

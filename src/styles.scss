@@ -61,18 +61,16 @@ body {
 
 .popup {
   position: fixed;
-  top: 50%;
+  right: 0;
+  bottom: 30%;
   left: 0;
-  margin-top: -200px;
-  width: 100%;
-  
-  .popup-content {
-    width: 624px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 395px;
-    border: 1px solid #000000;
-  }
+  padding: 40px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  width: 50%;
+  margin: auto;
+  border-radius: 0.25rem;
 }
 
 .panel {
