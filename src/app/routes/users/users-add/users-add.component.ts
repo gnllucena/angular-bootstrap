@@ -1,19 +1,19 @@
-import { Component, ViewEncapsulation, Input, Renderer2, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
-import { PanelAnimation } from 'src/app/modules/animations/panel.animation';
+import { Component, ViewEncapsulation, Renderer2, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { User } from 'src/app/domain/user';
 import { Location } from '@angular/common';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
-import { FadeAnimation } from 'src/app/modules/animations/fade.animation';
-import { Country } from 'src/app/domain/country';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DateValidation } from 'src/app/modules/validations/date.validation';
-import { CpfValidation } from 'src/app/modules/validations/cpf.validation';
-import { HttpService } from 'src/app/services/http.service';
-import { ToastService } from 'src/app/services/toast.service';
 import { UsersFormComponent } from '../users-form/users-form.component';
+import { PanelAnimation } from '../../../modules/animations/panel.animation';
+import { FadeAnimation } from '../../../modules/animations/fade.animation';
+import { User } from '../../../domain/user';
+import { Country } from '../../../domain/country';
+import { HttpService } from '../../../services/http.service';
+import { ToastService } from '../../../services/toast.service';
+import { CpfValidation } from '../../../modules/validations/cpf.validation';
+import { DateValidation } from '../../../modules/validations/date.validation';
 
 @Component({
   selector: 'users-add',

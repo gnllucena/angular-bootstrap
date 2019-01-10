@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { Pagination } from 'src/app/domain/pagination';
 import { FormGroup } from '@angular/forms';
+import { Pagination } from '../domain/pagination';
 
 @Injectable()
 export class HttpService<T> {

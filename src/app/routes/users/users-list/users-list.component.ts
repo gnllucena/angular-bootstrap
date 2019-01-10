@@ -2,13 +2,13 @@ import { Component, ViewEncapsulation, Output, EventEmitter, Inject, LOCALE_ID, 
 import { faTrash, faEdit, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { ListAnimation } from './../../../modules/animations/list.animation';
 import { User } from '../../../domain/user';
-import { Observable, of } from 'rxjs';
-import { Pagination } from 'src/app/domain/pagination';
+import { Observable } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { HttpService } from 'src/app/services/http.service';
-import { PaginationComponent } from 'src/app/modules/ui/pagination.component';
-import { PaginationInformationComponent } from 'src/app/modules/ui/pagination-information.component';
+import { HttpService } from '../../../services/http.service';
+import { PaginationComponent } from '../../../modules/ui/pagination.component';
+import { PaginationInformationComponent } from '../../../modules/ui/pagination-information.component';
+import { Pagination } from '../../../domain/pagination';
 
 @Component({
   selector: 'users-list',
@@ -71,8 +71,11 @@ export class UsersListComponent {
       this.offset = offset;
     }
 
-    this.pagination = this.userService.paginate('users', offset, this.limit, filters);
-    
-    return this.pagination;
+    return this.userService.paginate('users', offset, this.limit, filters)
+      .pipe((pagination) => {
+        this.pagination = pagination;
+
+        return pagination;
+      });
   }
 }

@@ -7,9 +7,9 @@ export class HttpBearerInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let user = JSON.parse(sessionStorage.getItem('user'));
+    let user = JSON.parse(localStorage.getItem('user'));
     
-    if (user && user.token) {
+    if (user && user.Token) {
       let authReq = req.clone({
         setHeaders: {
           Authorization: `Bearer ${user.token}`

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { Jwt } from '../../domain/jwt';
 import { Card } from './../../domain/card';
 import { User } from '../../domain/user';
-import { Pagination } from 'src/app/domain/pagination';
-import { Country } from 'src/app/domain/country';
+import { Pagination } from '../../domain/pagination';
+import { Country } from '../../domain/country';
 
 @Injectable()
 export class HttpBackendInterceptor implements HttpInterceptor {
@@ -47,11 +47,29 @@ export class HttpBackendInterceptor implements HttpInterceptor {
         return of(new HttpResponse({ status: 201, body: 99999  }));
       }
 
-      if (req.url.includes('users') && req.method === 'PUT') {
-        return of(new HttpResponse({ status: 204 }));
+      if (req.url.includes('users') && req.method === 'PUT') {      
+        let response = {  
+          message: 'Something is not right',
+          erros: [  
+            {  
+              code: '115',
+              error: 'Duplicated email',
+              property: 'Email',
+              value: 'gnllucena@gmail.com'
+            },
+            {  
+              code: '116',
+              error: 'Duplicated document',
+              property: 'Documento',
+              value: '023.437.673-27'
+            }
+          ]
+        };
+
+        throw new HttpErrorResponse({ status: 400, error: response });
       }
 
-      if (req.url.includes('users') && req.method === 'DELETE') {
+      if (req.url.includes('users') && req.method === 'DELETE') {      
         return of(new HttpResponse({ status: 204 }));
       }
 

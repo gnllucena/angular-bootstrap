@@ -3,14 +3,16 @@ import { UsersListComponent } from '../users-list/users-list.component';
 import { UsersFilterComponent } from '../users-filter/users-filter.component';
 import { FormGroup } from '@angular/forms';
 import { UsersAddComponent } from '../users-add/users-add.component';
-import { User } from 'src/app/domain/user';
 import { UsersEditComponent } from '../users-edit/users-edit.component';
 import { Router } from '@angular/router';
-import { HttpService } from 'src/app/services/http.service';
-import { forkJoin } from 'rxjs';
-import { Country } from 'src/app/domain/country';
-import { ConfirmationModalComponent } from 'src/app/modules/modals/confirmation-modal.component';
-import { ToastService } from 'src/app/services/toast.service';
+import { forkJoin, of, Observable } from 'rxjs';
+import { User } from '../../../domain/user';
+import { ConfirmationModalComponent } from '../../../modules/modals/confirmation-modal.component';
+import { Country } from '../../../domain/country';
+import { HttpService } from '../../../services/http.service';
+import { ToastService } from '../../../services/toast.service';
+import { mergeMap, switchMap } from 'rxjs/operators';
+import { Pagination } from '../../../domain/pagination';
 
 @Component({
   selector: 'users-page',
@@ -65,12 +67,12 @@ export class UsersPageComponent implements OnInit {
     }
   }
 
-  filter(filters: FormGroup): void {
+  filter(filters: FormGroup) {
     this.userList.list(0, filters);
   }
 
-  refresh(): void {
-    this.userList.list(null, null);
+  refresh(): Observable<Pagination<User>> {
+    return this.userList.list(null, null);
   }
 
   add(): void {
@@ -88,8 +90,12 @@ export class UsersPageComponent implements OnInit {
   delete(user: User): void {
     this.userDeleteCallback = () => {
       this.userHttpService.delete('users', user.Id)
-        .subscribe(() => {
+        .pipe((deletion) => {
+          this.refresh();
+
           this.toastService.success('the user was successfully deleted');
+
+          return deletion;
         });
     }
 

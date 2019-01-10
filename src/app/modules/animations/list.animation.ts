@@ -1,4 +1,4 @@
-import { trigger,animate, style, query, transition, stagger, keyframes } from '@angular/animations';
+import { trigger,animate, style, query, transition, stagger } from '@angular/animations';
 
 export const ListAnimation = trigger('list-transition', [
   transition('* <=> *', [

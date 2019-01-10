@@ -17,9 +17,7 @@ export class HttpLoaderInterceptor implements HttpInterceptor {
 
     return next.handle(request)
       .pipe(tap(res => {
-        if (res instanceof HttpResponse) {
-          this.finishing();
-        }
+        this.finishing();
       }), catchError(err => {
         this.finishing();
 

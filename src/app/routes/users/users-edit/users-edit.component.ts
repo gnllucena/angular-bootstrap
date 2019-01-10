@@ -1,17 +1,17 @@
 import { Component, ViewEncapsulation, Renderer2, ViewChild, ElementRef, LOCALE_ID, Inject, Output, EventEmitter } from '@angular/core';
 import { faTimes, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { PanelAnimation } from 'src/app/modules/animations/panel.animation';
-import { FadeAnimation } from 'src/app/modules/animations/fade.animation';
 import { BehaviorSubject } from 'rxjs';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { User } from 'src/app/domain/user';
-import { Country } from 'src/app/domain/country';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DateValidation } from 'src/app/modules/validations/date.validation';
-import { HttpService } from 'src/app/services/http.service';
-import { ToastService } from 'src/app/services/toast.service';
 import { UsersFormComponent } from '../users-form/users-form.component';
+import { PanelAnimation } from '../../../modules/animations/panel.animation';
+import { FadeAnimation } from '../../../modules/animations/fade.animation';
+import { User } from '../../../domain/user';
+import { Country } from '../../../domain/country';
+import { HttpService } from '../../../services/http.service';
+import { ToastService } from '../../../services/toast.service';
+import { DateValidation } from '../../../modules/validations/date.validation';
 
 @Component({
   selector: 'users-edit',
