@@ -4,11 +4,18 @@
       <div class="form-row">
         <div class="form-group col-md-3">
           <label for="Name">Name</label>
-          <input formControlName="Name" type="text" class="form-control" placeholder="User's name">
+          <input [formControl]="filters.controls['Name']"  type="text" class="form-control" placeholder="User's name">
         </div>
         <div class="form-group col-md-3">
           <label for="Email">Email</label>
-          <input formControlName="Email" type="text" class="form-control" placeholder="User's email">
+          <input [formControl]="filters.controls['Email']"  type="text" class="form-control" placeholder="User's email">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="Country">Country of birth</label>
+          <select [formControl]="filters.controls['Country']" class="form-control custom-select">
+            <option value="">Select country of birth</option>
+            <option *ngFor="let country of countries" [ngValue]="country.Name">{{ country.Name }}</option>
+          </select>
         </div>
       </div>
       

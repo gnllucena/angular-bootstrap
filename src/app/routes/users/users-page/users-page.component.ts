@@ -5,13 +5,12 @@ import { FormGroup } from '@angular/forms';
 import { UsersAddComponent } from '../users-add/users-add.component';
 import { UsersEditComponent } from '../users-edit/users-edit.component';
 import { Router } from '@angular/router';
-import { forkJoin, of, Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { User } from '../../../domain/user';
 import { ConfirmationModalComponent } from '../../../modules/modals/confirmation-modal.component';
 import { Country } from '../../../domain/country';
 import { HttpService } from '../../../services/http.service';
 import { ToastService } from '../../../services/toast.service';
-import { mergeMap, switchMap } from 'rxjs/operators';
 import { Pagination } from '../../../domain/pagination';
 
 @Component({
@@ -37,38 +36,40 @@ export class UsersPageComponent implements OnInit {
     private toastService: ToastService) { }
 
   ngOnInit(): void {
-    let list = this.userList.list(0, null);
+    let users = this.userList.list(0, null);
     let countries = this.countryHttpService.list('countries');
 
-    if (this.router.url.includes('new')) {  
-      forkJoin([list, countries]).subscribe(results => {
-        this.userAdd.user = new User();
-        this.userAdd.countries = results[1];
-        this.userAdd.visible.next(true);
+    if (this.router.url.includes('new')) {
+      countries
+        .subscribe(results => {
+          this.userAdd.user = new User();
+          this.userAdd.countries = results;
+          this.userAdd.visible.next(true);
 
-        this.countries = results[1];
-      });
+          this.countries = results;
+        });
     } else if (this.router.url.includes('users/')) {
       let id = Number(this.router.url.split('users/')[1]);
-
       let get = this.userHttpService.get('users', id);
-      
-      forkJoin([list, countries, get]).subscribe(results => {
-        this.userEdit.user = results[2];
-        this.userEdit.countries = results[1];
-        this.userEdit.visible.next(true);
 
-        this.countries = results[1];
-      });
+      forkJoin([countries, get])
+        .subscribe(results => {
+          this.userEdit.user = results[1];
+          this.userEdit.countries = results[0];
+          this.userEdit.visible.next(true);
+
+          this.countries = results[0];
+        });
     } else {
-      forkJoin([list, countries]).subscribe(results => {
-        this.countries = results[1];
-      });
+      countries
+        .subscribe(results => {
+          this.countries = results;
+        });
     }
   }
 
-  filter(filters: FormGroup) {
-    this.userList.list(0, filters);
+  filter(filters: FormGroup): Observable<Pagination<User>> {
+    return this.userList.list(0, filters);
   }
 
   refresh(): Observable<Pagination<User>> {

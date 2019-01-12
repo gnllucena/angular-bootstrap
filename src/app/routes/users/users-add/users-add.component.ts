@@ -84,7 +84,7 @@ export class UsersAddComponent {
     });
   }
 
-  submit() {
+  submit(): void {
     this.userHttpService.post('users', this.form)
       .subscribe(() => {
         this.toastService.success('the user was successfully added');
@@ -95,7 +95,7 @@ export class UsersAddComponent {
       });
   }
 
-  close() {
+  close(): void {
     this.userForm.submitted = false;
     this.visible.next(false);
   }

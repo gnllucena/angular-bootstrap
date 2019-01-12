@@ -83,7 +83,7 @@ export class UsersEditComponent {
     });
   }
 
-  submit() {
+  submit(): void {
     this.userHttpService.put('users', this.user.Id, this.form)
       .subscribe(() => {
         this.toastService.success('the user was successfully edited');
@@ -94,7 +94,7 @@ export class UsersEditComponent {
       });
   }
 
-  close() {
+  close(): void {
     this.userForm.submitted = false;
     this.visible.next(false);
   }

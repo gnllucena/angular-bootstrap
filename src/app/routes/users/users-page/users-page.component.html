@@ -3,6 +3,7 @@
 
   <users-filter 
     #userFilter
+    [countries]="countries"
     (addEvent)="add()"
     (filterEvent)="filter($event)">
   </users-filter>

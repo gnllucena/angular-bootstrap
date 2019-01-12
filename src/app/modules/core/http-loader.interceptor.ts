@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpInterceptor, HttpResponse } from '@angular/common/http';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, map } from 'rxjs/operators';
 
 import { LoadingService } from '../../services/loading.service';
 
@@ -11,22 +11,27 @@ export class HttpLoaderInterceptor implements HttpInterceptor {
   constructor(private loadingService: LoadingService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    this.requests++;
-    
+    console.log('foi ' + request.url )
+
     this.loadingService.loading.next(true);
 
     return next.handle(request)
-      .pipe(tap(res => {
-        this.finishing();
+      .pipe(tap(response => {
+        this.requests++;
+
+        this.finishing(request);
       }), catchError(err => {
-        this.finishing();
+        this.requests++;
+        
+        this.finishing(request);
 
         throw err;
       })
     );
   }
 
-  private finishing() {
+  private finishing(request: HttpRequest<any>) {
+    console.log('voltou ' + request.url )
     this.requests--;
 
     if (this.requests == 0) {

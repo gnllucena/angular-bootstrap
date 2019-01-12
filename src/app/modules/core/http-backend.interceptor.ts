@@ -83,6 +83,10 @@ export class HttpBackendInterceptor implements HttpInterceptor {
         let offset = 0
         let total = 0;
 
+        if (req.urlWithParams.includes('Kanto')) {
+          found = false;
+        }
+
         if (found) {
           users.push(new User({ Id: 1, Name: 'Pikachu', Email: 'pikachu@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Administrator', Active: true }));
           users.push(new User({ Id: 2, Name: 'Charmander', Email: 'charmander@gmail.com', Document: '02343767327', Birthdate: new Date('1991-04-28T12:00:00'), Country: 'Kanto', Profile: 'Regular', Active: false }));

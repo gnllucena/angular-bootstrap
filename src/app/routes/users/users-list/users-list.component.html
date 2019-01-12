@@ -59,10 +59,10 @@
       </div>
     </ng-template>
   </div>
-</ng-container>
 
-<pagination 
-  #pages 
-  [pagination]="pagination | async"
-  (paginateEvent)="list($event, null)">
-</pagination>
+  <pagination 
+    #pages 
+    [pagination]="pagination"
+    (paginateEvent)="list($event, null)">
+  </pagination>
+</ng-container>

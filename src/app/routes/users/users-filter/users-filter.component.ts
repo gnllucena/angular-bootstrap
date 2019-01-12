@@ -1,6 +1,8 @@
-import { Component, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
+import { Component, ViewEncapsulation, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { Country } from '../../../domain/country';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'users-filter',
@@ -8,16 +10,20 @@ import { debounceTime } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None
 })
 
-export class UsersFilterComponent {
+export class UsersFilterComponent  {
+  @Input() countries: Country[] = [];
   @Output() filterEvent: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
   @Output() addEvent: EventEmitter<void> = new EventEmitter<void>();
   
   public filters = new FormGroup({
     Name: new FormControl(),
-    Email: new FormControl()
+    Email: new FormControl(),
+    Country: new FormControl('')
   });
 
-  constructor() {
+  constructor(
+    private route: ActivatedRoute
+  ) {
     this.filters.controls.Name.valueChanges.pipe(
       debounceTime(500)).subscribe(() => {
         this.filter();
@@ -27,6 +33,19 @@ export class UsersFilterComponent {
       debounceTime(500)).subscribe(() => {
         this.filter();
       });
+
+    this.filters.controls.Country.valueChanges.pipe(
+      debounceTime(500)).subscribe(() => {
+        this.filter();
+      });
+
+    this.route.queryParamMap.subscribe(queryParams => {
+      let country = queryParams.get("country");
+
+      if (country) {
+        this.filters.controls.Country.setValue(country);
+      }
+    })
   }
 
   filter(): void {
