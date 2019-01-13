@@ -76,10 +76,10 @@ export class UsersAddComponent {
 
         this.renderer.addClass(document.body, 'overflow');
         this.renderer.setProperty(this.panel.nativeElement, 'scrollTop', '0');
-        this.location.go(this.router.url.split('/')[1] + '/new');
+        this.location.go(this.router.url.split('?')[0] + '/new');
       } else {
         this.renderer.removeClass(document.body, 'overflow'); 
-        this.location.go(this.router.url.split('/')[1]);
+        this.location.go(this.router.url.split('?')[0]);
       }
     });
   }

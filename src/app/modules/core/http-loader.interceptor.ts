@@ -11,8 +11,6 @@ export class HttpLoaderInterceptor implements HttpInterceptor {
   constructor(private loadingService: LoadingService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    console.log('foi ' + request.url )
-
     this.loadingService.loading.next(true);
 
     return next.handle(request)
@@ -31,7 +29,6 @@ export class HttpLoaderInterceptor implements HttpInterceptor {
   }
 
   private finishing(request: HttpRequest<any>) {
-    console.log('voltou ' + request.url )
     this.requests--;
 
     if (this.requests == 0) {

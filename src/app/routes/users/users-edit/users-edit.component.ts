@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, Renderer2, ViewChild, ElementRef, LOCALE_
 import { faTimes, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { BehaviorSubject } from 'rxjs';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsersFormComponent } from '../users-form/users-form.component';
 import { PanelAnimation } from '../../../modules/animations/panel.animation';
@@ -36,6 +36,7 @@ export class UsersEditComponent {
     private renderer: Renderer2,
     private location: Location,
     private router: Router,
+    private route: ActivatedRoute,
     private userHttpService: HttpService<User>,
     private toastService: ToastService,
     @Inject(LOCALE_ID) private locale: string) {
@@ -75,10 +76,12 @@ export class UsersEditComponent {
 
         this.renderer.addClass(document.body, 'overflow');
         this.renderer.setProperty(this.panel.nativeElement, 'scrollTop', '0');
-        this.location.go(this.router.url.split('/')[1] + '/' + this.user.Id);
+        console.log(route);
+        console.log(router);
+        this.location.go(this.router.url.split('?')[0] + '/' + this.user.Id);
       } else {
         this.renderer.removeClass(document.body, 'overflow');
-        this.location.go(this.router.url.split('/')[1]);
+        this.location.go(this.router.url.split('?')[0]);
       }
     });
   }

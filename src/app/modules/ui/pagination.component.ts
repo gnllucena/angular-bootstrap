@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { faAngleRight, faAngleLeft, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { Pagination } from 'src/app/domain/pagination';
 import { FadeAnimation } from '../animations/fade.animation';
 import { BehaviorSubject } from 'rxjs';
+import { Pagination } from '../../domain/pagination';
 
 @Component({
   selector: 'pagination',
