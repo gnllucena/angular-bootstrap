@@ -42,6 +42,8 @@ export class UsersEditComponent {
     @Inject(LOCALE_ID) private locale: string) {
 
     this.visible.subscribe((visible: Boolean) => {
+      let root = this.router.url.split('?')[0].split('/')[1];
+
       if (visible) {
         this.form = this.formBuilder.group({
           Name: this.formBuilder.control({
@@ -76,12 +78,10 @@ export class UsersEditComponent {
 
         this.renderer.addClass(document.body, 'overflow');
         this.renderer.setProperty(this.panel.nativeElement, 'scrollTop', '0');
-        console.log(route);
-        console.log(router);
-        this.location.go(this.router.url.split('?')[0] + '/' + this.user.Id);
+        this.location.go(root + '/' + this.user.Id);
       } else {
         this.renderer.removeClass(document.body, 'overflow');
-        this.location.go(this.router.url.split('?')[0]);
+        this.location.go(root);
       }
     });
   }

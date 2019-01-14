@@ -42,6 +42,8 @@ export class UsersAddComponent {
     private toastService: ToastService) {
 
     this.visible.subscribe((visible: Boolean) => {
+      let root = this.router.url.split('?')[0].split('/')[1];
+
       if (visible) {
         this.form = this.formBuilder.group({
           Name: this.formBuilder.control({
@@ -76,10 +78,10 @@ export class UsersAddComponent {
 
         this.renderer.addClass(document.body, 'overflow');
         this.renderer.setProperty(this.panel.nativeElement, 'scrollTop', '0');
-        this.location.go(this.router.url.split('?')[0] + '/new');
+        this.location.go(root + '/new');
       } else {
         this.renderer.removeClass(document.body, 'overflow'); 
-        this.location.go(this.router.url.split('?')[0]);
+        this.location.go(root);
       }
     });
   }
